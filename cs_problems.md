@@ -84,7 +84,8 @@ heappop(h)
 heappop(h)
 'c'
 ```
-</details
+</details>
+
 
 ## Questions
 

@@ -98,6 +98,7 @@ heappop(h)
 ```
 l = [0] * n    # create a list of n zeroes
 ```
+</details>
 
 ## Questions
 

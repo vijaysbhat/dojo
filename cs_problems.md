@@ -86,6 +86,18 @@ heappop(h)
 ```
 </details>
 
+<details>
+  <summary>
+    Common Operations
+
+* Create a list of n integers / characters     
+    
+  </summary>
+
+### Create a list of n integers / characters
+```
+l = [0] * n    # create a list of n zeroes
+```
 
 ## Questions
 

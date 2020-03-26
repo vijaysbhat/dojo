@@ -142,10 +142,10 @@ class Solution(object):
         return max_vol
 
 ```
-
+</details>
 <details>
   <summary>
-  <b>Longest Substring Without Repeating Characters</b>
+  <b>Longest substring without repeating characters</b>
   
   Given a string, find the length of the longest substring without repeating characters.
   

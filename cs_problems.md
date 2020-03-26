@@ -90,7 +90,8 @@ heappop(h)
   <summary>
     Common Operations
 
-* Create a list of n integers / characters     
+* Create a list of n integers / characters  
+* Sort a dict / array of tuples
     
   </summary>
 
@@ -98,9 +99,49 @@ heappop(h)
 ```
 l = [0] * n    # create a list of n zeroes
 ```
+### Sort a dict / array of tuples
+```
+# sort by second element in descending order
+sorted_arr = sorted(arr, lambda x: x[1], reverse=True)
+sorted_dict = sorted(d, lambda x: x['key'])
+```
 </details>
 
 ## Questions
+<details>
+  <summary>
+  <b>Container with most water</b>
+  
+  Given a set of n parallel vertical lines with heights represented in an array, find the two lines that along with the X-axis can contain the maximum volume of water.  
+  
+  <b>Insight:</b> 
+  Start with outermost lines and moving the shorter line inward with each step since that's the only way the volume can increase.
+  </summary>
+  
+```
+class Solution(object):
+    def volume(self, p, q):
+        return min(p[1], q[1]) * abs(p[0]-q[0])
+    
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        coords = [(i, h) for i, h in enumerate(height)]
+        n = len(coords)
+        i = 0
+        j = n-1
+        max_vol = 0
+        while i < j:
+            max_vol = max(max_vol, self.volume(coords[i], coords[j]))
+            if coords[i][1] < coords[j][1]:
+                i += 1
+            else:
+                j -= 1
+        return max_vol
+
+```
 
 <details>
   <summary>

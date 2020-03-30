@@ -92,6 +92,7 @@ heappop(h)
 
 * Create a list of n integers / characters  
 * Sort a dict / array of tuples
+* Trim a string (use strip)
     
   </summary>
 
@@ -104,6 +105,11 @@ l = [0] * n    # create a list of n zeroes
 # sort by second element in descending order
 sorted_arr = sorted(arr, lambda x: x[1], reverse=True)
 sorted_dict = sorted(d, lambda x: x['key'])
+```
+### Trim a string
+```
+# removes trailing and leading whitespace
+s.strip()
 ```
 </details>
 

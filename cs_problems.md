@@ -92,6 +92,7 @@ heappop(h)
 
 * Create a list of n integers / characters  
 * Sort a dict / array of tuples
+* Flatten a 2 level nested list
 * Trim a string (use strip)
     
   </summary>
@@ -105,6 +106,13 @@ l = [0] * n    # create a list of n zeroes
 # sort by second element in descending order
 sorted_arr = sorted(arr, lambda x: x[1], reverse=True)
 sorted_dict = sorted(d, lambda x: x['key'])
+```
+### Flatten a 2 level nested list
+```
+non_flat = [ [1,2,3], [4,5,6], [7,8] ]
+[y for x in non_flat for y in x]
+
+>> [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 ### Trim a string
 ```

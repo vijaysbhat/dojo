@@ -89,14 +89,24 @@ heappop(h)
 <details>
   <summary>
     Common Operations
-
+    
+* Substring / Subarray
 * Create a list of n integers / characters  
 * Sort a dict / array of tuples
 * Flatten a 2 level nested list
 * Trim a string (use strip)
-    
   </summary>
+  
+### Substring / Subarray
+```
+ss = s[i:j]      #inclusive of index i, exclusive of index j
+sarr = arr[i:j]
 
+s[i:i]          # if i == j, empty string / array is returned
+>> ''
+arr[i:i]
+>> []
+```
 ### Create a list of n integers / characters
 ```
 l = [0] * n    # create a list of n zeroes

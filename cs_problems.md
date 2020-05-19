@@ -41,6 +41,19 @@ stack.pop()
 ### Queue
 ```
 # Method 1
+# Python 3
+from queue import Queue 
+q = Queue()
+q.put('a') 
+q.put('b')
+q.get()
+=> 'a'
+'b' in q
+=> TypeError: argument of type 'instance' is not iterable
+q.get()
+=> 'b'
+
+# Method 2
 from collections import deque 
 q = deque()
 q.append('a') 
@@ -52,23 +65,31 @@ q.popleft()
 q.popleft()
 => 'b'
 
-# Method 2
-from Queue import Queue 
-q = Queue()
-q.put('a') 
-q.put('b')
-q.get()
-=> 'a'
-'b' in q
-=> TypeError: argument of type 'instance' is not iterable
-q.get()
-=> 'b'
-
 ```
 
 ### Heap
 ```
-from heapq import heappush, heeppop
+# Method 1 - PriorityQueue
+# Python 3
+# A typical pattern for entries is a tuple in the form: (priority_number, data).
+# items are retrieved in increasing order of priority_number
+
+from queue import PriorityQueue 
+pq = PriorityQueue()
+pq.put((1, 'a'))
+pq.put((3, 'b'))
+pq.put((2, 'z'))
+pq.get()
+=> (1, 'a')
+pq.empty()
+=> False
+pq.get()
+=> (2, 'z')
+pq.get()
+=> (3, 'b')
+
+# Method 2 - limited use since you can only push and pop values
+from heapq import heappush, heappop
 h = []
 heappush(h, 'a')
 heappush(h, 'c')

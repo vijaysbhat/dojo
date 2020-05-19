@@ -116,6 +116,7 @@ heappop(h)
 * Sort a dict / array of tuples
 * Flatten a 2 level nested list
 * Trim a string (use strip)
+
   </summary>
   
 ### Substring / Subarray
@@ -292,3 +293,176 @@ class Solution(object):
                 return (left_min + right_min) / 2.0
                     
 ```
+</details>
+<details>
+  <summary>
+  <b>Longest palindromic substrings</b>
+    
+  <b>Insight:</b> Use dynamic programming 
+  </summary>
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+
+<b>Notes:</b> 
+* Use while loop instead of for loop since it is better for explicitly controlling boundary condition
+* Check whether counter is being incremented in while loop
+* Check whether if statements with multiple clauses if all condition combinations are being handled explicitly, otherwise will cause unpredictable behavior
+* Python substring operator is exclusive of second operand
+* Loop termination boundary condition - write out equation for constraints with all relevant variables and rearrange 
+* Dynamic programming - bottom up approach is easier to reason about and place correctness guarantees on
+```
+class Solution(object):
+    def is_palindrome(self, s, memo, i, j):
+        if i == j:
+            memo[(i,j)] = True
+            return True
+        if j == i + 1:
+            if s[i] == s[j]:
+                memo[(i,j)] = True
+                return True
+            else:
+                memo[(i,j)] = False
+                return False
+        
+        if memo[(i+1, j-1)] == True and s[i] == s[j]:
+            memo[(i,j)] = True
+            return True
+        memo[(i,j)] = False
+        return False
+    
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        memo = {}
+        n = len(s)
+        l = 1
+        i = 0
+        max_len = 0
+        max_str = ''
+        while l <= n:
+            i = 0
+            while i < n - l + 1:
+                if self.is_palindrome(s, memo, i, i+l-1) and max_len < l:
+                    max_str = s[i:i+l]
+                i += 1
+            l += 1
+        return max_str
+```
+</details>
+
+<details>
+  <summary>
+  <b>Regular expression matchings</b>
+
+  <b>Insight:</b> Use dynamic programming 
+  </summary>
+Given an input string (s) and a pattern (p), implement regular expression matching with support for '.' and '*'.
+  
+  <b>Notes</b>
+* dynamic programming memo indexed by string location tuples
+* Top down approach - could also have done bottom up working backwards from the ends of both strings
+```
+class Solution(object):
+    def isMatch(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: bool
+        """
+        memo = {}
+        def match(i, j):
+            if (i,j) not in memo:
+                if j >= len(p):
+                    ret = (i == len(s))
+                else:
+                    first_char_match = i < len(s) and (s[i] == p[j] or p[j] == '.')
+                    if j+1 < len(p) and p[j+1] == '*':
+                        ret = match(i, j+2) or (first_char_match and match(i+1, j))
+                    else:
+                        ret = first_char_match and match(i+1,j+1)
+                memo[(i,j)] = ret
+            return memo[(i,j)]
+        
+        return match(0,0)
+```
+</details>
+
+<details>
+  <summary>
+  <b>Longest matching parantheses</b>    
+    
+  <b>Insight:</b> Use stack based approach
+  </summary>
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
+      
+  <b>Notes:</b>
+  
+* Stack based solution more intuitive
+* Think of alternatives a bit before running to a DP approach
+
+https://leetcode.com/problems/longest-valid-parentheses/solution/
+
+```
+class Solution(object):
+    def longestValidParentheses(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stack = []
+        ret = 0
+        stack.append(-1)
+        for i in range(len(s)):
+            if s[i] == '(':
+                stack.append(i)
+            else:
+                stack.pop()
+                if (len(stack) == 0):
+                    stack.append(i)
+                else:
+                    ret = max([ret, i - stack[-1]])
+        return ret
+```
+</details>
+
+<details>
+  <summary>
+  <b>Merge k sorted linked lists</b>
+    
+  <b>Insight:</b> Use heap / priority queue 
+  </summary>
+<b>Notes</b>
+
+* Use queue.PriorityQueue (put and get) for heap API
+* Linked list trick - use a dummy head to make initialization logic cleaner, throw away before returning linked list (return head.next)
+
+```
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        from Queue import PriorityQueue
+        head = current_node = ListNode(0)
+
+        q = PriorityQueue()
+        for l in lists:
+            if l:
+                q.put((l.val, l))
+        while not q.empty():
+            val, node = q.get()
+            next_node = node.next
+            current_node.next = ListNode(val)
+            current_node = current_node.next
+            if next_node:
+                q.put((next_node.val, next_node))
+        return head.next
+```
+</details>

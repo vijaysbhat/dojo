@@ -27,7 +27,7 @@
 
 ### Chapter 11 - Heaps
 
-11.1 - Merge sorted files
+* 11.1 - Merge sorted files
 
 ### Chapter 12 - Searching
 

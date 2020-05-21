@@ -6,7 +6,7 @@
 
 ### Chapter 6 - Arrays
 
-* 6.1 - Dutch national flag
+* 6.1 - [Dutch national flag](/epi_solutions/dutch_national_flag.py)
 * 6.7 - Buy and sell a stock once
 
 ### Chapter 7 - Strings

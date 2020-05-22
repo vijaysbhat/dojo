@@ -1,14 +1,15 @@
 '''
 Notes:
-* Initial approach was to use quicksort partition twice, once on array and another time on the part >= pivot. 
-  This didn't work because the partition termination logic should be different in both cases (< pivot vs < =pivot)
-  and having two parititioning functions makes for confusing code.
-* Use the EPI solution instead
+* My initial approach was to use quicksort partition twice, once on array and another time on the part >= pivot. 
+  Turns out I misremembered how Hoare's partitioning handles duplicates, they can go either side of the pivot. Which means
+  we would end up completing the sort to satisfy the partitioning requirements.
+* Used the EPI solution instead - turns out the Dutch National Flag approach is an alternative quicksort partitioning scheme 
+  proposed by Djikstra (in the 90s?), so it's not something EPI authors came up with.
 
 Bugs in quicksort partition:
 * Forgot to update i and j after the swap
 * Set j to n instead of n - 1
-* Thought I had misremembered Hoare partitioning but turns out there is another partitioning algorithm (Lomuto)
+* Thought I had misremembered Hoare partitioning but turns out there is also another partitioning method (Lomuto)
 
 '''
 
@@ -23,11 +24,11 @@ def quicksort_partition(arr, k):
     j = n - 1
     pivot = arr[k]
     while i < j:
-        # if we break on arr[i] >= pivot, the returned value j is the index starting right of which values are >= pivot
+        # break on arr[i] >= pivot, duplicates can go on either side of the pivot in classic Hoare partitioning
         while i < n and arr[i] < pivot:
             i += 1
-        # if we break on arr[j] <= pivot, the returned value j is the index starting left of which values are <= pivot
-        while j >= 0 and arr[j] >= pivot:
+        # break on arr[j] <= pivot, duplicates can go on either side of pivot in classic Hoare partitioning
+        while j >= 0 and arr[j] > pivot:
             j -= 1
         if i < j  and i < n and j >= 0:
             swap_elements(arr, i, j)

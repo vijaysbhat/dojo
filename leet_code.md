@@ -44,14 +44,14 @@ Given an input string (s) and a pattern (p), implement regular expression matchi
 [Solution](/leet_code/regular_expression_matching.py)
 
   
-### Longest matching parantheses   
+### Longest valid parantheses   
 Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
     
 <b>Insight:</b> Use stack based approach
 
 https://leetcode.com/problems/longest-valid-parentheses/solution/
 
-[Solution](/leet_code/longest_matching_parantheses.py)
+[Solution](/leet_code/longest_valid_parantheses.py)
 
 
 ### Merge k sorted linked lists</b>

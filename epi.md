@@ -15,7 +15,7 @@
 
 ### Chapter 8 - Linked Lists
 
-* 8.1 - Merge two sorted lists
+* 8.1 - [Merge two sorted linked lists](/epi_solutions/merge_two_sorted_linked_lists.py)
 
 ### Chapter 9 - Stacks & Queues
 

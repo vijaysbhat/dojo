@@ -11,7 +11,7 @@
 
 ### Chapter 7 - Strings
 
-* 7.1 - Interconvert strings and integers
+* 7.1 - [Interconvert strings and integers](/epi_solutions/string_integer_interconvert.py)
 
 ### Chapter 8 - Linked Lists
 

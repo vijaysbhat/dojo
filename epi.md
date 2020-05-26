@@ -23,7 +23,7 @@
 
 ### Chapter 10 - Binary Trees
 
-* 10.1 - Test if binary tree is balanced
+* 10.1 - [Test if binary tree is balanced](/epi_solutions/binary_tree_balanced.py)
 
 ### Chapter 11 - Heaps
 

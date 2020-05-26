@@ -19,7 +19,7 @@
 
 ### Chapter 9 - Stacks & Queues
 
-* 9.1 - Implement a stack with max API
+* 9.1 - [Implement a stack with max API](/epi_solutions/stack_max_api.py)
 
 ### Chapter 10 - Binary Trees
 

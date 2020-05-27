@@ -8,9 +8,13 @@
 * [Common Operations](#common-operations)
   * [Substring / subarray](#substring--subarray)
   * [Create a list of n integers / characters](#create-a-list-of-n-integers--characters)  
-  * [Sort a dict / array of tuples](sort-a-dict--array-of-tuples)
+  * [Sort a dict / array of tuples](#sort-a-dict--array-of-tuples)
   * [Flatten a 2 level nested list](#flatten-a-2-level-nested-list)
   * [Trim a string (use strip)](#trim-a-string)
+  * Append to a string / array
+  * Iterate over array with index and element
+  * Iterate over dict key value pairs
+  * Convert between integers and characters  
 
 ## Canonical Data Structure Operations in Python
 
@@ -143,3 +147,56 @@ non_flat = [ [1,2,3], [4,5,6], [7,8] ]
 s.strip()
 ```
 
+### Append to a string / array
+```
+arr = [1,3,10]
+arr.append(7)
+print(arr)
+>> [1, 3, 10, 7]
+arr.extend([2,3])
+print(arr)
+>> [1, 3, 10, 7, 2, 3]
+
+s = 'abcd'
+s = s + 'e'
+print(s)
+>> abcde
+s = s + 'fg'
+print(s)
+>> abcdefg
+
+```
+
+### Iterate over array with index and element
+```
+arr = [1,3,10]
+for i, el in enumerate(arr):
+    print(i, el)
+
+>> 0 1
+>> 1 3
+>> 2 10
+```
+
+### Iterate over dict key value pairs
+```
+ d = {1:2, 2:3}
+ for k, v in d.items():
+     print(k,v)
+>> 1 2
+>> 2 3
+```
+
+### Convert between integers and characters  
+```
+ord('a')
+>> 97
+ord('A')
+>> 65
+ord('0')
+>> 48
+ord('9')
+>> 57
+chr(ord('0') + 7)
+>> '7'
+```

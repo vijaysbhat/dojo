@@ -1,15 +1,19 @@
-## Common Python Patterns
+# Common Python Patterns
 
-<details>
-  <summary>
-    Canonical Data Structure Operations in Python
+* [Canonical Data Structure Operations in Python](#canonical-data-structure-operations-in-python)
+  * [HashMap](#hashmap)    
+  * [Stack](#stack)
+  * [Queue](#queue)
+  * [Heap](#heap)
+* [Common Operations](#common-operations)
+  * Substring / subarray
+  * Create a list of n integers / characters  
+  * Sort a dict / array of tuples
+  * Flatten a 2 level nested list
+  * Trim a string (use strip)
 
-* HashMap    
-* Stack
-* Queue
-* Heap
-    
-  </summary>
+## Canonical Data Structure Operations in Python
+
 ### HashMap
 ```
 d = {}
@@ -103,21 +107,10 @@ heappop(h)
 heappop(h)
 'c'
 ```
-</details>
 
-<details>
-  <summary>
-    Common Operations
-    
-* Substring / Subarray
-* Create a list of n integers / characters  
-* Sort a dict / array of tuples
-* Flatten a 2 level nested list
-* Trim a string (use strip)
-
-  </summary>
-  
-### Substring / Subarray
+## Common Operations
+      
+### Substring / subarray
 ```
 ss = s[i:j]      #inclusive of index i, exclusive of index j
 sarr = arr[i:j]
@@ -149,5 +142,4 @@ non_flat = [ [1,2,3], [4,5,6], [7,8] ]
 # removes trailing and leading whitespace
 s.strip()
 ```
-</details>
 

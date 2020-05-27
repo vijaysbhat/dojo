@@ -6,11 +6,11 @@
   * [Queue](#queue)
   * [Heap](#heap)
 * [Common Operations](#common-operations)
-  * Substring / subarray
-  * Create a list of n integers / characters  
-  * Sort a dict / array of tuples
-  * Flatten a 2 level nested list
-  * Trim a string (use strip)
+  * [Substring / subarray](#substring--subarray)
+  * [Create a list of n integers / characters](#create-a-list-of-n-integers--characters)  
+  * [Sort a dict / array of tuples](sort-a-dict--array-of-tuples)
+  * [Flatten a 2 level nested list](#flatten-a-2-level-nested-list)
+  * [Trim a string (use strip)](#trim-a-string)
 
 ## Canonical Data Structure Operations in Python
 

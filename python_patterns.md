@@ -11,10 +11,10 @@
   * [Sort a dict / array of tuples](#sort-a-dict--array-of-tuples)
   * [Flatten a 2 level nested list](#flatten-a-2-level-nested-list)
   * [Trim a string (use strip)](#trim-a-string)
-  * Append to a string / array
-  * Iterate over array with index and element
-  * Iterate over dict key value pairs
-  * Convert between integers and characters  
+  * [Append to a string / array](#append-to-a-string--array)
+  * [Iterate over array with index and element](#iterate-over-array-with-index-and-element)
+  * [Iterate over dict key value pairs](#iterate-over-dict-key-value-pairs)
+  * [Convert between integers and characters](#convert-between-integers-and-characters) 
 
 ## Canonical Data Structure Operations in Python
 

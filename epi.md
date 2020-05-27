@@ -31,7 +31,7 @@
 
 ### Chapter 12 - Searching
 
-* 12.1 - Search sorted array for first occurrence of k
+* 12.1 - [Search sorted array for first occurrence of k](/epi_solutions/first_element_equal_to_k.py)
 
 ### Chapter 13 - Hash Tables
 

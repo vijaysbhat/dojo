@@ -39,7 +39,7 @@
 
 ### Chapter 14 - Sorting
 
-* 14.1 - Compute the intersection of two sorted arrays
+* 14.1 - [Compute the intersection of two sorted arrays](/epi_solutions/intersection_sorted_arrays.py)
 
 ### Chapter 15 - Binary Search Trees
 

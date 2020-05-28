@@ -35,7 +35,7 @@
 
 ### Chapter 13 - Hash Tables
 
-* 13.1 - Parition into anagrams
+* 13.1 - [Partition into anagrams](/epi_solutions/anagrams.py)
 
 ### Chapter 14 - Sorting
 

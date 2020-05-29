@@ -47,7 +47,7 @@
 
 ### Chapter 16 - Recursion
 
-* 16.1 - Tower of Hanoi
+* 16.1 - [Tower of Hanoi](/epi_solutions/towers_of_hanoi.py)
 
 ### Chapter 17 - Dynamic Programming
 

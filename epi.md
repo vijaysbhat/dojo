@@ -43,7 +43,7 @@
 
 ### Chapter 15 - Binary Search Trees
 
-* 15.1 - Test if binary tree satisfies the BST property
+* 15.1 - [Test if binary tree satisfies the BST property](/epi_solutions/validate_bst_property.py)
 
 ### Chapter 16 - Recursion
 

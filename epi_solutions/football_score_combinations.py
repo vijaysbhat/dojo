@@ -8,7 +8,7 @@ Notes:
 * for combinations of scores, find a way to dedupe play sequences with the same plays (but different order).
 * what went right
     * remembered to copy list retrieved from DP memo instead of using the original object since it could have unpredictable results
-      if they get reused across recursive calls.s
+      if they get reused across recursive calls.
 * what went wrong
     * in Python list append doesn't return the value of the augmented list
     * constructing a dict of dicts is tricky since we need a way to hash each individual dictionary

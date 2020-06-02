@@ -59,7 +59,7 @@
 
 ### Chapter 19 - Graphs
 
-* 19.2 - Identify the celebrity
+* 19.2 - [Maze search](/epi_solutions/maze_search.py)
 
 ### Chapter 22 - Honors Class
 

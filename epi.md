@@ -51,7 +51,7 @@
 
 ### Chapter 17 - Dynamic Programming
 
-* 17.1 - Count the number of score combinations
+* 17.1 - [Count the number of score combinations](/epi_solutions/football_score_combinations.py)
 
 ### Chapter 18 - Greedy Algorithms & Invariants
 

@@ -55,7 +55,7 @@
 
 ### Chapter 18 - Greedy Algorithms & Invariants
 
-* 18.5 - Implement Huffman encoding
+* 18.5 - [The 3-sum problem](/epi_solutions/three_sum.py)
 
 ### Chapter 19 - Graphs
 

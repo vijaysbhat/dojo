@@ -9,6 +9,16 @@
   * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
   * Initializing a 2-D array gotcha - `[[0] * n] * m]` doesn't work since it creates an array of m references to the same row! Use `[[0] * n] * i for i in range(m)]` instead.
 
+## Problem Solving Patterns
+* Sorting
+* Hash table
+* Recursion
+* Divide and conquer - identical subproblems
+* Dynamic programming - overlapping subproblems
+* Greedy algorithms - locally optimum solutions at each iteration
+* Invariants
+  * Given a sorted array, common pattern is to use pointers starting from either end moving inwards. e.g. 2-sum problem, maximum water trapped between vertical lines. 
+
 
 ## Algorithm Notes
 

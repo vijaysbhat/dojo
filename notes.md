@@ -1,5 +1,5 @@
-### 6/3/2020
-Code review checklist
+
+## Code Review Checklist
 * Input size and return values for degenerate cases.
 * Array counters are being incremented in all the required locations.
 * Store the length of the array in a variable.
@@ -10,9 +10,9 @@ Code review checklist
   * Initializing a 2-D array gotcha - `[[0] * n] * m]` doesn't work since it creates an array of m references to the same row! Use `[[0] * n] * i for i in range(m)]` instead.
 
 
-### 5/21/2020
+## Algorithm Notes
 
-Quicksort partitioning logic
+### Quicksort partitioning logic
 * Two techniques - [Hoare's](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) (what I learned in school) and [Lomuto's](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
 * Handling duplicates of the pivot element in Hoare's partitioning
   * Duplicates of the pivot element **can go into either subarray**. We don't need to pick a side for duplicates to go to (I had thought we needed to) because the sort will ultimately converge after further partitioning iterations. More on this in these [lecture notes](https://www.cs.princeton.edu/courses/archive/spring09/cos226/lectures/06Quicksort-2x2.pdf)

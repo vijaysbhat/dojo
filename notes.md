@@ -12,6 +12,16 @@
 
 ## Algorithm Notes
 
+### Asymptotic Complexity Recursive Formulas
+| Formula  | Solution  | Examples  | 
+|---|---|---|
+| `T(n) = T(n/2) + O(1)`|`O(log n)`|Binary search|
+|`T(n) = T(n-1) + O(1)`|`O(n)`|Sequential search|
+|`T(n) = 2 T(n/2) + O(1)`|`O(n)`|Binary tree traversal|
+|`T(n) = T(n-1) + O(n)`|`O(n^2)`|Selection sort|
+|`T(n) = 2 T(n/2) + O(n)`|`O(n log n)`|Quicksort|
+|`T(n) = T(n/2) + O(n)`|`O(n)`|Median / k-th largest element|
+
 ### Quicksort partitioning logic
 * Two techniques - [Hoare's](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) (what I learned in school) and [Lomuto's](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
 * Handling duplicates of the pivot element in Hoare's partitioning

@@ -1,3 +1,15 @@
+### 6/3/2020
+Code review checklist
+* Input size and return values for degenerate cases.
+* Array counters are being incremented in all the required locations.
+* Store the length of the array in a variable.
+* All branches of conditional (if/else) statements being explicitly handled.
+* Linked list - all pointers that need to be advanced are being advanced.
+* Python specific
+  * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
+  * Initializing a 2-D array gotcha - [[0] * n] * m] doesn't work since it creates an array of m references to the same row! Use [[0] * n] * i for i in range(m)] instead.
+
+
 ### 5/21/2020
 
 Quicksort partitioning logic

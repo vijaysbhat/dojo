@@ -160,7 +160,8 @@ Power           Exact Value         Approx Value        Bytes
 * **Transport Layer**
 * **Application Layer**
 
-**TODO** - Add network diagrams
+![Data Flow](/images/networking_data_flow.png)
+![Data Encapsulation](/images/networking_data_encapsulation.png)
 
 **Note** - Sockets (ip address + port + transport) are a transport layer concept (layer 4) i.e. both a TCP and UDP application can bind to port 53
 

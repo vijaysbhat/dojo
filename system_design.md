@@ -1,14 +1,5 @@
 # System Design Notes
 
-TODO:
-* TLS handshake
-* Three phase commit
-* Kafka internals
-* IPSec / VPN
-* Resource Isolation
-* company architecture section
-
-
 ## Areas Of Concern
 
 * **Security**
@@ -16,7 +7,7 @@ TODO:
   * Authorization
   * Malicious Attacks
 * **Scaling**
-  * Load balancer
+  * [Load balancer](#load-balancer)
   * Horizontal stateless scaling
   * Caching layer
     * Application cache vs database cache
@@ -25,11 +16,11 @@ TODO:
       * write-through reduces stampede on backend DB.
       * write-through cache makes writes slower but users more tolerant of write slowness than read slowness.
     * Write behind (async DB update)
-  * Database scaling
-  * Message queues to decouple backend processing
+  * [Relational Database scaling](#relational-database-scaling)
+  * [Message queues](#message-queues-and-async-processing) to decouple backend processing
 * **Resource Isolation**
 * **Backend Database Choice**
-  * SQL vs NoSQL
+  * [SQL vs NoSQL](#sql-vs-nosql)
 * **Availability Numbers**
   * 3 nines downtime
     * ~100 seconds per day
@@ -42,12 +33,14 @@ TODO:
   * Real time metrics - statsd, Grafana
   * Pager alerts on thresholds
 * **Stress Tesing & SLA**
+  * Benchmarking tool like ab
+  * Profiling tool like MySQL slow queries log
 * **Fault Tolerance & Disaster Recovery**
   * Fail-over patterns
     * Active-active
     * Active-passive
-  * Thundering herd
-  * Use of DNS for transparent switching?
+  * [Thundering herd](#thundering-herd)
+  * Use of DNS for transparent switchover
 
 ## Latency Numbers
 ```
@@ -61,13 +54,13 @@ Main memory reference                      100   ns                      20x L2 
 Compress 1K bytes with Zippy            10,000   ns       10 us
 Send 1 KB bytes over 1 Gbps network     10,000   ns       10 us
 Read 4 KB randomly from SSD*           150,000   ns      150 us          ~1GB/sec SSD
-Read 1 MB sequentially from memory     250,000   ns      250 us
-Round trip within same datacenter      500,000   ns      500 us
+Read 1 MB sequentially from memory     250,000   ns      250 us           4GB/sec
+Round trip within same datacenter      500,000   ns      500 us          5000x main memory reference
 Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
 Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
 Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
 Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
-Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
+Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms 3000x data center round trip
 
 Notes
 -----
@@ -118,15 +111,30 @@ Power           Exact Value         Approx Value        Bytes
   * Data encoding and transmission
   * e.g. Ethernet, 802.11 physical layers, DSL
 * **Layer 2 - Link**
+* **Identifier** - IP address
   * Node to node link
-  * **Identifier** - MAC (media access control) address
+  * **ARP** = Address Resolution Protocol i.e. IP address -> MAC address discovery for IPv4
+  * **NDP** = Neighbor Discovery Protocol i.e. IP address -> MAC address discovery for IPv6
   * Collision detection / avoidance and retransmission
     * **CSMA / CD** (Carrier Sense Multiple Access with Collision Detection) - Ethernet
     * **CSMA / CA** (Carrier Sense Multiple Access with Collision Avoidance) - 802.11
   * e.g. Ethernet, PPP, 802.11, ARP
 * **Layer 3 - Network**
-  * Routing
   * **Identifier** - IP address
+  * Routing
+  * IPv4 - 32 bits
+  * IPv6 - 128 bits
+    * Loopback - ::1
+  * IPSec
+    * Transport mode - IP headers not encrypted but data is
+    * Tunnel mode - original IP headers also encapsulated and encrypted -> VPN
+  * Routing table
+    * network ID - destination subnet
+    * metric - cost
+    * next hop - address of next node
+  * Subnet
+    * CIDR (Classless Inter Domain Routing) e.g. 198.51.100.0/24 covers the range 198.51.100.0 to 198.51.100.255
+    * Subnet mask e.g. 255.255.255.0 is the subnet mask for the prefix 198.51.100.0/24
   * OSPF (Open Shortest Path First)
     * sends hello packets to neighboring routers to update link state and cost
     * doesn't use TCP / UDP but IP datagrams
@@ -152,9 +160,11 @@ Power           Exact Value         Approx Value        Bytes
 * **Transport Layer**
 * **Application Layer**
 
+**TODO** - Add network diagrams
+
 **Note** - Sockets (ip address + port + transport) are a transport layer concept (layer 4) i.e. both a TCP and UDP application can bind to port 53
 
-**ARP** = Address Resolution Protocol i.e. IP address -> MAC address discovery
+
 
 #### TCP
   * **three way handshake**
@@ -189,9 +199,6 @@ Power           Exact Value         Approx Value        Bytes
   * DHCP uses UDP because client doesn't yet have an IP address
   * e.g. video streaming, gaming
 
-
-
-#### TLS five way handshake
 #### What happens after clicking on a web link
 
 * DNS resolution
@@ -214,7 +221,7 @@ Power           Exact Value         Approx Value        Bytes
 * Client reconstructs HTTP response payload and displays in the browser.
 
 
-### Load Balancing
+### Load Balancer
 
 * SSL termination at the load balancer / nginx
   * reduces the CPU load on downstream services
@@ -259,9 +266,14 @@ Power           Exact Value         Approx Value        Bytes
 
 ### Distributed system consensus
   * Two phase commit
+    * Propose / vote phase
+    * Commit / abort phase
+    * Can block indefinitely if coordinator fails in the middle of phase 1 or 2
   * Three phase commit
-    * Removes need for indefinite blocking unlike two phase commit.
-    * Three round trip times (RTT) make transactions slow
+    * Prepare to commit phase after the proposal phase and before the commit phase.
+    * Coordinator does not send commit message until all members have ACKed that they are prepared to commit, which means no member can commit a transaction before all members are aware of the decision to do so.
+    * Removes possibility of indefinite blocking unlike two phase commit.
+    * Three round trip times (RTT) make transactions slow.
   * Paxos
   * Raft
 
@@ -329,15 +341,24 @@ Power           Exact Value         Approx Value        Bytes
 
 * Fundamental algorithm behind CDNs (Akamai)
 
-### Message Queues & Async processing
+### Message Queues And Async Processing
 
 * Decouple expensive operations and push to a background worker
 * RabbitMQ (AMQP), Amazon SQS, Kafka
+* Queueing - single consumer receives any given message
+* PubSub - many consumers can subscribe to a queue / topic
+
 * Backpressure
   * Send HTTP 503 / failure codes when queue fills up and let client do exponential backoff.
 
 ### Kafka Internals
-  https://kafka.apache.org/intro
+ * Order guaranteed at a partition level.
+ * **Queueing** - use a single consumer group, messages load balanced across consumers.
+ * **PubSub** - use multiple consumer groups, messages sent to each subscribed consumer group.
+ * **Consumer position coordination**
+   * Each partition is consumed by exactly one consumer in a consumer group, so only need to maintain one offset per partition per consumer group, which can be checkpointed.
+ * **Exactly once semantics**
+   * Store offset in the same location as the output data, guaranteeing that both the data and offset are updated or neither is e.g. Kafka Connect writes offset to HDFS
 
 
 ### RPC vs REST
@@ -363,8 +384,6 @@ Power           Exact Value         Approx Value        Bytes
     * Client side
       * Jitter to request timing
       * Exponential backoff
-
-### Resource Isolation
 
 
 ### Zero Copy

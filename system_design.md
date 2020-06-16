@@ -350,7 +350,6 @@ Power           Exact Value         Approx Value        Bytes
 * RabbitMQ (AMQP), Amazon SQS, Kafka
 * Queueing - single consumer receives any given message
 * PubSub - many consumers can subscribe to a queue / topic
-
 * Backpressure
   * Send HTTP 503 / failure codes when queue fills up and let client do exponential backoff.
 
@@ -368,8 +367,13 @@ Power           Exact Value         Approx Value        Bytes
 
 * RPC
   * flexible definition of actions / behaviors
+  * RPC libraries implement battle tested strategies for well behaved client logic
+    * exponential backoff
+    * add jitter to request time
+    * load balancing and failover
+    * [cascading cancelations](https://landing.google.com/sre/sre-book/chapters/addressing-cascading-failures/) (to avoid work doomed to be rejected due to timeouts)
   * caching is hard
-  * e.g. Protobuf, Thrift, Avro
+  * e.g. gRPC (Protobuf), Thrift, Avro
 * REST
   * stateless - horizontal scaling, sharding, caching is easy
   * operations limited to HTTP verbs and CRUD operations
@@ -387,6 +391,7 @@ Power           Exact Value         Approx Value        Bytes
     * Client side
       * Add jitter to request retry timing
       * Exponential backoff
+      * Use a library like gRPC that implements all these
 
 
 ### Zero Copy
@@ -406,3 +411,4 @@ Power           Exact Value         Approx Value        Bytes
 * https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview/
 * https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/
 * https://www.the-paper-trail.org/post/2008-11-29-consensus-protocols-three-phase-commit/
+* https://landing.google.com/sre/sre-book/toc/

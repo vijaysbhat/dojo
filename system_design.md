@@ -5,6 +5,8 @@
 * **Security**
   * Authentication
   * Authorization
+  * Audit
+  * Privacy / PII / Confidential data
   * Malicious Attacks
 * **Scaling**
   * [Load balancer](#load-balancer)
@@ -111,7 +113,7 @@ Power           Exact Value         Approx Value        Bytes
   * Data encoding and transmission
   * e.g. Ethernet, 802.11 physical layers, DSL
 * **Layer 2 - Link**
-* **Identifier** - IP address
+  * **Identifier** - IP address
   * Node to node link
   * **ARP** = Address Resolution Protocol i.e. IP address -> MAC address discovery for IPv4
   * **NDP** = Neighbor Discovery Protocol i.e. IP address -> MAC address discovery for IPv6
@@ -383,7 +385,7 @@ Power           Exact Value         Approx Value        Bytes
       * LIFO queue to process requests that aren't about to time out on the client (and will be retried anyway)
       * Drop old requests - takes care of badly behaved clients
     * Client side
-      * Jitter to request timing
+      * Add jitter to request retry timing
       * Exponential backoff
 
 

@@ -12,6 +12,9 @@
 ### Chapter 7 - Strings
 
 * 7.1 - [Interconvert strings and integers](/epi_solutions/string_integer_interconvert.py)
+* 7.2 - Replace and remove
+
+* 7.6 - Look and say
 
 ### Chapter 8 - Linked Lists
 
@@ -20,10 +23,12 @@
 ### Chapter 9 - Stacks & Queues
 
 * 9.1 - [Implement a stack with max API](/epi_solutions/stack_max_api.py)
+* 9.2 - Evaluate Reverse Polish Notation
 
 ### Chapter 10 - Binary Trees
 
 * 10.1 - [Test if binary tree is balanced](/epi_solutions/binary_tree_balanced.py)
+* 10.15 - Implement locking in a binary tree
 
 ### Chapter 11 - Heaps
 
@@ -32,14 +37,17 @@
 ### Chapter 12 - Searching
 
 * 12.1 - [Search sorted array for first occurrence of k](/epi_solutions/first_element_equal_to_k.py)
+* 12.9 - Find the kth laregest element
 
 ### Chapter 13 - Hash Tables
 
 * 13.1 - [Partition into anagrams](/epi_solutions/anagrams.py)
+* 13.2 - Test for palindromic permutations
 
 ### Chapter 14 - Sorting
 
 * 14.1 - [Compute the intersection of two sorted arrays](/epi_solutions/intersection_sorted_arrays.py)
+* 14.7 - Compute the union of intervals
 
 ### Chapter 15 - Binary Search Trees
 
@@ -52,6 +60,7 @@
 ### Chapter 17 - Dynamic Programming
 
 * 17.1 - [Count the number of score combinations](/epi_solutions/football_score_combinations.py)
+* 17.2 - Levenshtein distance
 
 ### Chapter 18 - Greedy Algorithms & Invariants
 
@@ -62,6 +71,14 @@
 * 19.2 - [Maze search](/epi_solutions/maze_search.py)
 
 ### Chapter 22 - Honors Class
+
+* 22.1 - Compute GCD
+* 22.4 - Compute max product of all entries but one
+* 22.10 - Implement list zipping 
+* 22.24 - Compute the smallest nonconstructible change
+* 22.28 - Merge two binary search trees
+* 22.34 - Count inversions
+* 22.42 - Maximum water trapped
 
 
 

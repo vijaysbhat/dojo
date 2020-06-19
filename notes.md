@@ -40,3 +40,24 @@
 * Dutch National Flag approach
   * Three way partitioning scheme invented by Djikstra - bottom, middle (equal to pivot element), top
   * Use 3 indexes for lesser (initialize to 0), equal (initialize to 0) and higher (initialize to len(arr)-1) and iterate through array in a single pass
+  
+### Bloom Filter
+* Probabilistic data structure for testing if a key is in a set - false positives are possible but false negatives are not
+  * hash the key and check if the bit at that index is set
+  * if the bit is not set we definitely know the key is not present
+  * if the bit is set, we know with a probability threshold (1 - hash collision probability) that the key is present, so we need to check for actual presence.
+* Used in BigTable / HBase, CDNs, browser caches (detect second request for a web object and only then cache)
+
+
+### String search
+
+* Three O(n) algorithms - KMP, Boyer-Moore and Robin Karp
+* Robin-Karp easiest to understand
+  * Replace string comparisons with hash based *fingerprint* comparisons
+  * A *rolling* hash allows reuse of the previous substring hash value as the sliding window for comparison advances in the larger string
+* **Steps**
+  * Take the hash of the smaller substring (size m).
+  * Starting from the beginning of the larger string (size n) advance a sliding window comparing hash value with the smaller string and incrementally updating the hash value.
+  * If there is a match of hash values, check for an actual match because there could be a hash collision.
+* **O(m+n)** run time as long as the hash function doesn't have a lot of collisions
+

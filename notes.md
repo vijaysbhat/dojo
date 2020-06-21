@@ -49,7 +49,7 @@
 * Used in BigTable / HBase, CDNs, browser caches (detect second request for a web object and only then cache)
 
 
-### String search
+### String Search
 
 * Three O(n) algorithms - KMP, Boyer-Moore and Robin Karp
 * Robin-Karp easiest to understand
@@ -60,4 +60,37 @@
   * Starting from the beginning of the larger string (size n) advance a sliding window comparing hash value with the smaller string and incrementally updating the hash value.
   * If there is a match of hash values, check for an actual match because there could be a hash collision.
 * **O(m+n)** run time as long as the hash function doesn't have a lot of collisions
+
+### Streaming algorithms
+  * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)
+    * Maintain random sample of k elements (without replacement) from stream
+    * Read first k elements from stream
+    * Maintain count of elements seen so far, n
+    * For n > k, generate a random number i from 0 to n-1
+      * If i < k replace the element in the sample at position i with the new element
+      * If i >= k, discard the new element
+  * k-minimum values
+    * cardinality estimation (approximate count distinct) in high cardinality datasets
+  * [Hyper-log-log](https://en.wikipedia.org/wiki/HyperLogLog)
+    * cardinality estimation (approximate count distinct) in high cardinality datasets
+  * [Count-min sketch](https://en.wikipedia.org/wiki/Count%E2%80%93min_sketch)
+    * frequency count for high cardinality datasets
+    * data structure: two-dimensional array of w columns and d rows
+    * d hash functions for each row, h_d
+    * when new event with key k arrives, for each row d compute h_d(k) and increment the count in that column
+    * for a point query for key k, return min(count[d, h_d(k)]) over all rows
+  * Top-k frequent keys
+    * need the following data structures
+      * count-min sketch for count lookup and update
+      * min-heap for storing top k frequency elements
+      * hash table of size k for fast lookup by key
+    * when new event arrives
+      * lookup and update the frequency for its key in the count-min sketch
+      * if the key exists in the hash table, increment its count there
+      * if the key doesn't exist in the hash table
+        * test if the count is greater than the count for smallest top-k key from the min-heap.
+          * if yes, evict the smallest key from the min-heap and replace with the new key. replace the hash table entry for the evicted key with the new key
+          * if no, discard the new key and move on to the next event
+* [MinHash](https://en.wikipedia.org/wiki/MinHash)
+  * fast approximation for Jaccard Similarity
 

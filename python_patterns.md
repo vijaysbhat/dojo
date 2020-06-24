@@ -7,7 +7,8 @@
   * [Heap](#heap)
 * [Common Operations](#common-operations)
   * [Substring / subarray](#substring--subarray)
-  * [Create a list of n integers / characters](#create-a-list-of-n-integers--characters)  
+  * [Initialize a list of n integers / characters](#initialize-a-list-of-n-integers--characters)  
+  * [Initialize a m x n array of integers / characters](#initialize-an-array-of-integers--characters)  
   * [Sort a dict / array of tuples](#sort-a-dict--array-of-tuples)
   * [Flatten a 2 level nested list](#flatten-a-2-level-nested-list)
   * [Trim a string (use strip)](#trim-a-string)
@@ -15,6 +16,7 @@
   * [Iterate over array with index and element](#iterate-over-array-with-index-and-element)
   * [Iterate over dict key value pairs](#iterate-over-dict-key-value-pairs)
   * [Convert between integers and characters](#convert-between-integers-and-characters) 
+  * [Get unique strings from a list of strings](#get-unique-strings-from-a-list-of-strings)
 
 ## Canonical Data Structure Operations in Python
 
@@ -124,10 +126,18 @@ s[i:i]          # if i == j, empty string / array is returned
 arr[i:i]
 >> []
 ```
-### Create a list of n integers / characters
+### Initialize a list of n integers
 ```
 l = [0] * n    # create a list of n zeroes
 ```
+
+### Initialize an array of integers
+```
+# the construct [[0] * m] * n] doesn't work since it reuses references 
+# to the inner list, not what we want.
+arr = [[0] * m for i in range(n)]    # create a m x n array of zeroes
+```
+
 ### Sort a dict / array of tuples
 ```
 # sort by second element in descending order
@@ -199,4 +209,12 @@ ord('9')
 >> 57
 chr(ord('0') + 7)
 >> '7'
+```
+
+### Get unique strings from a list of strings
+Convert to a set and back to a list
+```
+arr = ['abc', 'abc', 'xyz']
+list(set(arr))
+>> ['xyz', 'abc']
 ```

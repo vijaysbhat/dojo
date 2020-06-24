@@ -262,10 +262,6 @@ Power           Exact Value         Approx Value        Bytes
   * Level 7 (application layer)
     * e.g. video traffic routed to video servers
 
-### Multithreading
-
-
-
 ### Unique ID Generation
 
 * Needed for transaction processing

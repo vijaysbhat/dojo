@@ -48,6 +48,22 @@
   * if the bit is set, we know with a probability threshold (1 - hash collision probability) that the key is present, so we need to check for actual presence.
 * Used in BigTable / HBase, CDNs, browser caches (detect second request for a web object and only then cache)
 
+### Multithreading
+
+* Java
+  * Implement Runnable interface
+  * Extend Thread class (limiting due to lack of multiple inheritance in Java)
+* Synchronization
+  * synchronized methods in the object (class or instance)
+  * synchronized block
+  * locks
+* Python
+  * Not possible to do truly concurrent multithreading (i.e. utilize multicore CPU) due to GIL
+  * Useful for I/O heavy tasks that wait on resources being available
+  * No improvement for CPU heavy tasks
+  * Use ThreadPoolExecutor from concurrent.futures
+  * Use threading.Lock to synchronize control
+
 
 ### String Search
 

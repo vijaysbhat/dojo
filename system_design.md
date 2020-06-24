@@ -130,6 +130,7 @@ Power           Exact Value         Approx Value        Bytes
 #### CDN
 
 * Push vs Pull (On-demand) CDN
+* Use for high popularity / traffic content
 
 #### OSI model
 
@@ -483,6 +484,7 @@ Power           Exact Value         Approx Value        Bytes
 #### Instagram
 * photos stored as blobs on S3 and replicated to CDNs
   * storing photos in a file system is suboptimal due to high amount of redundant metadata
+  * use CDNs for popular / high traffic content
   * Facebook Haystack paper
 * distributed id generation
   * autoincrement makes sharding impossible

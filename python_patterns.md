@@ -140,9 +140,11 @@ arr = [[0] * m for i in range(n)]    # create a m x n array of zeroes
 
 ### Sort a dict / array of tuples
 ```
-# sort by second element in descending order
-sorted_arr = sorted(arr, lambda x: x[1], reverse=True)
-sorted_dict = sorted(d, lambda x: x['key'])
+# sort by second element of array of tuples in descending order
+sorted_arr = sorted(arr, key=lambda x: x[1], reverse=True)
+
+# sort dict by value
+sorted_dict = sorted(d, key=lambda x: x[1])
 ```
 ### Flatten a 2 level nested list
 ```

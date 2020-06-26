@@ -410,12 +410,14 @@ Power           Exact Value         Approx Value        Bytes
   * Remap keys to the closest server point on the circle.
   * Due to random distribution of server points on the circle, the redistribution is balanced across servers.  
 * Time complexity - K keys and N slots
+
 ||Classic Hash Table|Consistent Hashing|
 |--|--|--|
 |add a node|O(K)|O(K/N + log N)|
 |remove a node|O(K)|O(K/N + log N)|
 |add a key|O(1)|O(log N)|
 |remove a key|O(1)|O(log N)|
+
 * Mapping **each server to multiple points on the circle** is what achieves the O(K/N) property for resizing. Otherwise a server going down would require all keys for that server to mapped to the next server in the circle, doubling its load.
 
 ### Message Queues And Async Processing

@@ -63,6 +63,17 @@
   * If there is a match of hash values, check for an actual match because there could be a hash collision.
 * **O(m+n)** run time as long as the hash function doesn't have a lot of collisions
 
+### Binary Search Trees
+
+* [Deletion](https://en.wikipedia.org/wiki/Binary_search_tree#Deletion)
+  * Node has no children - trivial
+  * Node has one child - swap child with node to be deleted
+  * Node has two children
+    * Find successor to node in right subtree and replace value in node to be deleted 
+    * If replacement node has children, it's only a right child - update replacement node's parent to point to that child node
+    * Delete replacement node
+  * **NOTE** no tree rotation operation required
+
 ### Streaming algorithms
   * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)
     * Maintain random sample of k elements (without replacement) from stream

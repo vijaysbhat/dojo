@@ -5,10 +5,10 @@ Test if a binary tree satisfies the BST property
 Notes:
 * what went right
     * remembered the pattern of using multiple return values
-    * implemented BFS solution with no errors
 * what went wrong
     * didn't review that left_min, left_max, right_min and right_max were getting set correctly 
       in the base case for recursive solution
+    * implemented BFS solution with major subtle error that only caught on later review - was locally checking for BST but not globally for the subtree
 '''
 from queue import SimpleQueue
 
@@ -33,9 +33,9 @@ def is_binary_tree(tree):
     '''
     if tree is None:
         return True, None, None
-    left_balanced, left_min, left_max = is_binary_tree(tree.left)
-    right_balanced, right_min, right_max = is_binary_tree(tree.right)
-    if left_balanced == False or right_balanced == False:
+    left_bst, left_min, left_max = is_binary_tree(tree.left)
+    right_bst, right_min, right_max = is_binary_tree(tree.right)
+    if left_bst == False or right_bst == False:
         return False, None, None
     left_min = left_min or tree.val
     left_max = left_max or tree.val
@@ -48,15 +48,21 @@ def is_binary_tree(tree):
 
 def is_binary_tree_bfs(tree):
     q = SimpleQueue()
-    q.put(tree)
+    q.put((tree, None, None))
     while q.empty() == False:
-        node = q.get()
+        node, min_val, max_val = q.get()
+        # check for local BST property
         if (node.left is not None and node.left.val > node.val) or (node.right is not None and node.right.val < node.val):
             return False
+        # check for global BST property in the subtree
+        if min_val is not None and node.val < min_val:
+            return False
+        if max_val is not None and node.val > max_val:
+            return False
         if node.left is not None:
-            q.put(node.left)
+            q.put((node.left, min_val, node.val))
         if node.right is not None:
-            q.put(node.right)
+            q.put((node.right, node.val, max_val))
     return True
 
 def create_tree_from_node_list(nodes):
@@ -77,11 +83,12 @@ if __name__ == '__main__':
     test_cases = [
         [(19,7,43), (7,3,11), (3,2,5), (2,None,None), (5,None,None), (11,None,17), (17,13,None), (13,None,None),
          (43,23,47), (23,None,37), (37,29,41), (29,None,31), (31,None,None), (41,None,None), (47,None,53), (53,None,None)],
-        [(314,6,7),(6,271,561),(271,None,None),(561,None,None),(7,None,None)]
+        [(314,6,7),(6,271,561),(271,None,None),(561,None,None),(7,None,None)],
+        [(3,2,None),(2,1,4),(1,None,None),(4,None,None)],  # test case that catches local vs global BST property
     ]
 
     for t in test_cases:
         tree = create_tree_from_node_list(t)
         #tree.inorder_print()
-        print(is_binary_tree(tree))
-        print(is_binary_tree_bfs(tree))
+        print('Recursive solution:', is_binary_tree(tree)[0])
+        print('BFS solution:', is_binary_tree_bfs(tree))

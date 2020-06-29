@@ -138,13 +138,16 @@ l = [0] * n    # create a list of n zeroes
 arr = [[0] * m for i in range(n)]    # create a m x n array of zeroes
 ```
 
-### Sort a dict / array of tuples
+### Sort a dict array / tuple array
 ```
 # sort by second element of array of tuples in descending order
 sorted_arr = sorted(arr, key=lambda x: x[1], reverse=True)
 
-# sort dict by value
-sorted_dict = sorted(d, key=lambda x: x[1])
+# sort an array of dicts by an attribute e.g. d = {'age': 10, 'name': 'Bart'}, {'age': 39, 'name': 'Homer'}]
+sorted_dict = sorted(d, key=lambda x:x['age'])
+
+# sort dict by value e.g. d = {'b':1, 'a':2}
+{k: v for k, v in sorted(d.items(), key=lambda item: item[1])}
 ```
 ### Flatten a 2 level nested list
 ```

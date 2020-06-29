@@ -206,7 +206,12 @@ Power           Exact Value         Approx Value        Bytes
     * resend segment - **fast retransmit**
     * enter congestion avoidance state
   * **congestion window**
-    * set of packets that are sent without gating on ACK
+    * set of TCP segments that are sent without waiting for ACK from receiver
+    * maintained by sender to prevent *link* from getting overloaded
+  * **receive (sliding) window**
+    * used for flow control
+    * advertised by receiver to prevent *receiver* from getting overloaded 
+    * packets received out of order are rearranged in order within the receive window
   * **slow start**
     * congestion window set to 1 MSS (maximum segment size)
     * increased by 1 for each ACK received, which doubles the window size each round trip delay time (RTT)

@@ -39,7 +39,7 @@
   * 4 nines downtime
     * ~10 seconds per day
     * ~1 hour per year
-* Deployment
+* **Deployment**
   * CI / CD
   * Staged rollout (staging, canary, prod %)
   * Small holdout to compare changes to previous version

@@ -135,5 +135,49 @@
   
 ### SQL 
 
-Review resources
-* https://docs.aws.amazon.com/redshift/latest/dg/r_Window_function_examples.html
+* Use [CTEs](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL#Common_table_expression) liberally
+* Windowing functions
+  * Lead / Lag - e.g. find previous / next quantity bought
+  ```
+  lag(qty,1) over (partition by buyerid order by saletime) as prev_qty
+  lead(qty,1) over (partition by buyerid order by saletime) as next_qty
+  ```
+  * Cumulative sum - e.g. find quantity bought so far
+  ```
+  saletime,
+  sum(qty) over (partition by buyerid order by saletime rows unbounded preceding) as cum_sum
+  ```
+  * Sliding window sum
+    * e.g. backward looking 7 day rolling sum of quantity bought
+    ```
+    saletime,
+    sum(qty) over (partition by buyerid order by saletime rows 7 preceding) as prev7day_sum
+    ```
+    * e.g. forward looking 7 day rolling sum of quantity bought
+    ```
+    saletime,
+    sum(qty) over (partition by buyerid order by saletime rows 7 following) as next7day_sum
+    ```
+  * First value / last value
+    * e.g. find time of first and last purchase per buyer
+    ```
+    first_value(saletime) over (partition by buyerid order by saletime) as first_purchase_time,
+    last_value(saletime) over (partition by buyerid order by saletime) as last_purchase_time
+      ```
+  * Rank
+    * Use row_number() instead of rank() since rank() can have duplicates
+    * e.g.find latest purchases by each buyer
+    ```
+    row_number() over (partition by buyerid order by saletime desc) as rnk
+    ...
+    where rnk = 1
+    ```
+  * Percentile
+    * e.g. find top 50% of purchases by quantity
+    ```
+    percent_rank() over (partition by buyerid order by qty) as pctile
+    ...
+    where pctile > 0.5
+    ```
+* Review resources
+  * https://docs.aws.amazon.com/redshift/latest/dg/r_Window_function_examples.html

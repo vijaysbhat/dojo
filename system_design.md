@@ -80,7 +80,7 @@ Redis query latency                  2,000,000   ns    2,000 us    2 ms
 Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
 Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
 MySQL query latency                 25,000,000   ns   25,000 us   25 ms
-Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
+Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 30MB/sec, 120x memory, 30X SSD
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms 3000x data center round trip
 
 Notes

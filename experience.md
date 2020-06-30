@@ -52,3 +52,13 @@
   * 10% exploiting previous long term investments. If it was executed well, shouldn't take more overhead than this.
   * 50% on medium term - responding to changing business requirements
   * 40% long term efforts - making future long term investments
+* Rightsizing amount of process
+  * Too little process - buggy code, delayed ship dates
+    * How to measure
+      * Number of defects
+      * Number of sevs / outages
+      * Ship date delays
+  * Too much process - slow team velocity
+    * How to measure
+      * Story points completed per sprint
+      * Increase in high priority backlog size

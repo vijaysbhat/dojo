@@ -132,3 +132,8 @@
   * Design an ATM
   * Design an elevator
   * Design a Parking System
+  
+### SQL 
+
+Review resources
+* https://docs.aws.amazon.com/redshift/latest/dg/r_Window_function_examples.html

@@ -106,6 +106,18 @@
           * if no, discard the new key and move on to the next event
 * [MinHash](https://en.wikipedia.org/wiki/MinHash)
   * fast approximation for Jaccard Similarity
+  
+### Stream Processing Model
+* Useful for reasoning about unbounded datasets - pretty much every real world example.
+* Batch is a special case of stream processing.
+* Event time vs processing time.
+* Watermark is the a function of processing time p_t - maximum event time e_t <= p_t such that every event time e_t' <= e_t has arrived.
+* Fixed window, rolling window and dynamic (session) window processing.
+* Triggers - when to materialize the window. Can materialize at periodic intervals until the watermark and then for every late arriving data element within the lateness horizon of the watermark.
+* Resources
+  * https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/
+  * https://www.oreilly.com/radar/the-world-beyond-batch-streaming-102/
+
 
 ## Other Concepts
 

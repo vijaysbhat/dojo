@@ -1,6 +1,7 @@
 '''
-Notes
+Reverse a linked list.
 
+Notes
 * Iterative solution was a grind to get the variables right
 * Recursive solution had a bug with the tail element of the reversed list not having a null next value
 

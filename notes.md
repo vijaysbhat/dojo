@@ -1,11 +1,13 @@
 
 ## Code Review Checklist
-* Input size and return values for degenerate cases.
+* Create test cases - normal and degenerate valued.
+* Validate input size and return values for degenerate cases.
 * Array counters are being incremented in all the required locations.
 * Store the length of the array in a variable.
 * Can integer values be negative? Can there be overflow / underflow?
 * All branches of conditional (if/else) statements being explicitly handled.
 * Linked list - all pointers that need to be advanced are being advanced.
+* Validate logic works in termination case as well e.g. right after breaking out of a loop
 * Python specific
   * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
   * When calculating mid point of two array indexes, cast as int. Otherwise Python converts to float which will cause an index exception.
@@ -55,8 +57,8 @@
 
 * Three O(n) algorithms - KMP, Boyer-Moore and Robin Karp
 * Robin-Karp easiest to understand
-  * Replace string comparisons with hash based *fingerprint* comparisons
-  * A *rolling* hash allows reuse of the previous substring hash value as the sliding window for comparison advances in the larger string
+  * Replace string comparisons with hash based **fingerprint** comparisons
+  * A **rolling** hash allows reuse of the previous substring hash value as the sliding window for comparison advances in the larger string
 * **Steps**
   * Take the hash of the smaller substring (size m).
   * Starting from the beginning of the larger string (size n) advance a sliding window comparing hash value with the smaller string and incrementally updating the hash value.
@@ -69,10 +71,25 @@
   * Node has no children - trivial
   * Node has one child - swap child with node to be deleted
   * Node has two children
-    * Find successor to node in right subtree and replace value in node to be deleted 
-    * If replacement node has children, it's only a right child - update replacement node's parent to point to that child node
-    * Delete replacement node
-  * **NOTE** no tree rotation operation required
+    * Find successor to node in right subtree and replace value in node to be deleted.
+    * If replacement node has children, it's only a right child - update replacement node's parent to point to that child node.
+    * Delete replacement node.
+  * **NOTE** no tree rotation operation required.
+  
+### Graph Algorithms
+
+* Dijkstra's shortest path
+  * Steps
+    * Initialize all nodes as unvisited, create a lookup table of distance to source initialized to infinity / None.
+    * Set source node distance to zero (by definition) and add node to priority queue.
+    * Get the node from the priority queue with the minimum distance value. **<< KEY STEP**
+    * For each unvisited neighbor, update its distance value to the source if the path through the current node is shorter.
+    * Mark the current node as visited and repeat the loop until the target is reached.
+  * Greedy algorithm and can take a very meandering path
+  * Correctness reasoning - when we get the minimum distance valued node from the priority queue, it satisfies the shortest path property to the source. Why? If there were a shorter path, it would have to traverse from the set of visited nodes to the unvisited nodes, back to the visited nodes and then the currently selected node. If that were the case, a node in the previous section of the path in the unvisited nodes should have been selected from the priority queue. **This is why the positive edge weights requirement is crucial.**
+* A* algorithm - directed shortest path
+  * Improves upon Dijkstra by using the currently known *true* distance to the source plus a heuristic distance (known ahead of time, e.g. Euclidian distance) so more promising paths are explored first.
+  * Correctness - if the heuristic distance is guaranteed to be less than or equal to the true distance, we can trivially see that it will give us the correct result.
 
 ### Streaming algorithms
   * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)

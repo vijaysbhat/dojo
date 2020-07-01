@@ -1,13 +1,20 @@
 
 ## Code Review Checklist
-* Create test cases - normal and degenerate valued.
+* Create test cases - normal and degenerate valued. e.g.
+  * Odd and even length palindrome matches.
+  * Odd and even length arrays for finding medians.
+  * Duplicates in arrays
+  * Empty and null strings / arrays.
 * Validate input size and return values for degenerate cases.
-* Array counters are being incremented in all the required locations.
 * Store the length of the array in a variable.
+* Array counters being initialized correctly esp. for nested loops.
+* Array counters are being incremented in all the required locations.
 * Can integer values be negative? Can there be overflow / underflow?
 * All branches of conditional (if/else) statements being explicitly handled.
 * Linked list - all pointers that need to be advanced are being advanced.
 * Validate logic works in termination case as well e.g. right after breaking out of a loop
+* Set visited flag for graph traversal.
+* Keep talking through ways to improve solution after getting the basic implementation right.
 * Python specific
   * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
   * When calculating mid point of two array indexes, cast as int. Otherwise Python converts to float which will cause an index exception.

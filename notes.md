@@ -18,7 +18,7 @@
 * Python specific
   * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
   * When calculating mid point of two array indexes, cast as int. Otherwise Python converts to float which will cause an index exception.
-  * Initializing a 2-D array gotcha - `[[0] * n] * m]` doesn't work since it creates an array of m references to the same row! Use `[[0] * n] for i in range(m)]` instead.
+  * Initializing a 2-D array gotcha - `[[0] * m] * n` doesn't work since it creates an array of n references to the same row! Use `[[0] * m for i in range(n)]` instead to create a m x n array.
 
 ## Problem Solving Patterns
 * Sorting

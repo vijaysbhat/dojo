@@ -133,7 +133,7 @@ l = [0] * n    # create a list of n zeroes
 
 ### Initialize an array of integers
 ```
-# the construct [[0] * m] * n] doesn't work since it reuses references 
+# the construct [[0] * m] * n doesn't work since it reuses references 
 # to the inner list, not what we want.
 arr = [[0] * m for i in range(n)]    # create a m x n array of zeroes
 ```

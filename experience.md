@@ -1,24 +1,24 @@
 
 
-## Personal Philosophy
+# Personal Philosophy
 
-### Designing Systems
+## Designing Systems
 
 
-#### Simplicity
+### Simplicity
 > Make things as simple as possible but no simpler - Einstein
 
 * Simple systems have fewer failure modes.
 * Always need to have fallback plans for when things fail, the final fallback being some type of manual intervention - and the more complex a system is, the harder it is to manually keep operational.
 
 
-#### Automation
+### Automation
 > A man is rich in proportion to the number of things he can afford to let alone - Thoreau
 
 * Automation provides leverage, and I like to view all software engineering efforts through the lens of automation leverage.
 * We need to be careful to plan for what happens when the automation breaks down.
 
-### Leading
+## Leading
 
 * Influencing people
   * Ask lots of questions and actually listen to answers
@@ -52,7 +52,7 @@
   * Builds trust and people reach out for advice.
 
 
-### Technical
+## Technical
 
 * Talk about some particularly crazy/difficult bugs that you encountered
   * [Redshift cluster slowdown](#severe-redshift-cluster-slowdown)
@@ -72,9 +72,9 @@
       * Story points completed per sprint
       * Increase in high priority backlog size
 
-### Stories
+## Stories
 
-#### AG energy data platform
+### AG energy data platform
 * When I joined - RoR app on MySQL with cron job running forecast models in R for ~10 installations.
 * Architected scalable platform for processing and forecasting time series data from millions of smart meters.
 * Saw early on that data platform needed to be decoupled from forecasting algorithm development.
@@ -84,7 +84,7 @@
   * Ability for data scientists to develop models independent of data platform roadmap.
 * Impact - successful deployment to millions of smart meters in Oklahoma.
 
-#### DSP forecasting system
+### DSP forecasting system
 * Context
   * Existing marketplace balance models were wildly inaccurate after  COVID-19 shock.
   * Needed replacement models to inform marketplace lever (incentives / acquisition spend) budgeting decisions.
@@ -96,7 +96,7 @@
 * Identified individual teams members' technical comparative advantages (e.g.data science, data engineering) so they could lean into their strengths and also coached them to uplevel in areas they were lacking background (e.g. defensive coding, production system troubleshooting).
 * **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.
 
-#### Driver Engagement team
+### Driver Engagement team
   * Context
     * Newly formed DE pod didn't have trust of DS team.
     * Frequent failures and data quality issues in (poorly written) Hive pipelines.
@@ -108,9 +108,9 @@
   * Coached DS team members on effective use of Hive pipelines.
   * **Impact**: number of reported issues dropped from 13 a month to 3 a month in just 3 months.
 
-#### DE oncall
+### DE oncall
 
-##### Severe Redshift cluster slowdown
+#### Severe Redshift cluster slowdown
 * Context
   * Redshift pipelines inexplicably slowed to a crawl and were missing 9am SLAs.
   * Took over oncall after initial investigation completed over the weekend.
@@ -122,7 +122,7 @@
 * User permissions change scheduled job for all users (not just updates) got checked in that flushed the cluster cache on every update, causing the slowdown. These changes would be written to a separate audit log, not the main query log.
 * **Impact** - issue got resolved, but not after a major grind with multiple engineers and AWS support involved.
 
-##### Hive resource usage dashboard
+#### Hive resource usage dashboard
 
 * Context
   * Hive jobs randomly stopped progressing and ultimately failed in the cluster and missed SLAs.
@@ -132,7 +132,7 @@
 * **Impact** - unlocked oncall's ability to quickly identify any rogue pipelines that were destabilizing cluster health.    
 
 
-### Example questions
+## Example questions
 * What were you hired to do?
 * What accomplishments are you most proud of in these roles?
 * What were some low points during that job?

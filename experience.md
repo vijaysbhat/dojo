@@ -1,16 +1,22 @@
+
+
 ## Personal Philosophy
 
 ### Designing Systems
 
-* Simplicity
-  * Make things as simple as possible but no simpler - Einstein
-  * Why?
-    * Simple systems have fewer failure modes.
-    * In the spirit of always having a backup plan for when things will fail, and complex systems are hard to keep functioning manually.
-* Automation
-  * A man is rich in proportion to the number of things he can afford to let alone - Thoreau.
-  * Automation is leverage, view all software engineering through the lens of automation leverage.
-  * Plan for what happens when the automation breaks down.
+
+#### Simplicity
+> Make things as simple as possible but no simpler - Einstein
+
+* Simple systems have fewer failure modes.
+* Always need to have fallback plans for when things fail, the final fallback being some set of manual interventions - and the more complex a system is, the harder it is to operate manually.
+
+
+#### Automation
+> A man is rich in proportion to the number of things he can afford to let alone - Thoreau
+
+* Automation provides leverage, and I like to view all software engineering efforts through the lens of automation leverage.
+* We need to be careful to plan for what happens when the automation breaks down.
 
 ### Leading
 
@@ -23,20 +29,36 @@
   * First give a vaguely defined small task to measure a baseline for ability.
   * Calibrate amount of support needed based on how well they do.
     * How do they clarify the requirements? Talk directly to stakeholders?
-    * Quality of code produced. Defensive coding, observability and monitoring.
+    * Assess the quality of code produced e.g. defensive coding, observability and monitoring.
   * Why?
     * Too much support and team member might be demoralized or resentful.
     * Too little support and team member might be demotivated and not even ask for help.
 * Turf battles
-  * Have to manage / preempt them otherwise it reflects poorly on everyone.
-  * Build relationships and get multiple data points on history and motivations of teams
+  * Have to manage / preempt them otherwise it reflects poorly across teams.
+  * Build relationships and get multiple data points for diversity of context and insights.
   * Build trust with common goal in mind
+* Building Trust
+  * Pick up the (grunt) work teams are unwilling / unable to do because it a) falls between team boundaries b) isn’t shiny and exciting c) people in the teams don’t have the necessary background.
+  * In my experience this kind of work has outsize impact because it enables smooth end to end operation across teams.
+  * Building trust in this manner pre-empts turf battles and opens up access to future opportunities for impact.
+  * **Examples**
+    * **Driver Engagement team**
+      * Identified lack of tracking mechanism for data issues and set up JIRA for the data science team.
+      * Automated data quality and parity checks for every stage of ETL to fail early
+      * Optimize ETL for faster recovery in the event of upstream data issues.
+      * **Impact**: number of reported issues dropped from 13 a month to 3 a month in just 3 months.
+    * **Marketplace forecasting system**
+      * Identified and validated essential requirements (time to ship, no-touch / full automation, SLA, observability and monitoring) and non-requirements (distributed training)
+      * A forecast model is of limited utility if it needs a lot of manual steps to operate and validate, and therefore cannot be widely used by non data scientists.
+      * Proactive with use of defensive checks, alerts and visualizations to monitor / output quality.
+      * **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.
+
 * What's my superpower?
-  * Developed a strong reputation for analytical chops - uncommon for SWE
-  * Great at data visualization and telling a story
+  * Developed a strong reputation for analytical chops - uncommon for SWE.
+  * Great at data visualization and telling a story.
   * Mindset - walk folks through my interpretation and recommendation, do they agree with it?
-  * Get buy-in or disagree and commit
-  * Builds trust and people reach out for advice
+  * Get buy-in or disagree and commit.
+  * Builds trust and people reach out for advice.
 
 
 ### Technical
@@ -62,3 +84,29 @@
     * How to measure
       * Story points completed per sprint
       * Increase in high priority backlog size
+
+
+
+
+### Example questions
+* What were you hired to do?
+* What accomplishments are you most proud of in these roles?
+* What were some low points during that job?
+* Previous teams and management
+	* What was it like working with them?
+	* What would they say are your biggest strengths?
+	  * Steady hand during tense back to back incidents
+	* What would they say were areas for improvement?
+* Helping a team succeed when you weren't the official leader
+* How do you work individually and in a team
+* How do you help others?
+* How do you navigate ambiguity?
+* How do you push yourself to grow outside of your comfort zone
+* Describe two specific goals you set for yourself
+  * Clear objectives
+  * Reasons for those goals
+  * Metrics to track progress
+  * Obstacles to overcome and things learned
+* Describe when you failed to meet a deadline
+  * Root cause
+  * How you applied what you learned in future projects

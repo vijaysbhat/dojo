@@ -9,7 +9,7 @@
 > Make things as simple as possible but no simpler - Einstein
 
 * Simple systems have fewer failure modes.
-* Always need to have fallback plans for when things fail, the final fallback being some set of manual interventions - and the more complex a system is, the harder it is to operate manually.
+* Always need to have fallback plans for when things fail, the final fallback being some type of manual intervention - and the more complex a system is, the harder it is to manually keep operational.
 
 
 #### Automation
@@ -42,21 +42,12 @@
   * In my experience this kind of work has outsize impact because it enables smooth end to end operation across teams.
   * Building trust in this manner pre-empts turf battles and opens up access to future opportunities for impact.
   * **Examples**
-    * **Driver Engagement team**
-      * Identified lack of tracking mechanism for data issues and set up JIRA for the data science team.
-      * Automated data quality and parity checks for every stage of ETL to fail early
-      * Optimize ETL for faster recovery in the event of upstream data issues.
-      * **Impact**: number of reported issues dropped from 13 a month to 3 a month in just 3 months.
-    * **Marketplace forecasting system**
-      * Identified and validated essential requirements (time to ship, no-touch / full automation, SLA, observability and monitoring) and non-requirements (distributed training)
-      * A forecast model is of limited utility if it needs a lot of manual steps to operate and validate, and therefore cannot be widely used by non data scientists.
-      * Proactive with use of defensive checks, alerts and visualizations to monitor / output quality.
-      * **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.
-
+    * [Driver Engagement team](#driver-engagement-team)
+    * [DSP forecasting system](#dsp-forecasting-system)
 * What's my superpower?
-  * Developed a strong reputation for analytical chops - uncommon for SWE.
+  * Developed a reputation for strong analytical chops / data sense - uncommon for SWE.
   * Great at data visualization and telling a story.
-  * Mindset - walk folks through my interpretation and recommendation, do they agree with it?
+  * Mindset - walk folks through my take and recommendation, do they agree with it?
   * Get buy-in or disagree and commit.
   * Builds trust and people reach out for advice.
 
@@ -64,12 +55,8 @@
 ### Technical
 
 * Talk about some particularly crazy/difficult bugs that you encountered
-  * Severe Redshift cluster slowdown
-    * Lots of red herrings
-    * Led the war room effort - multiple players, took over oncall after initial investigation completed.
-    * Thought it was some tables that had developed data skew due to  exponential growth on account of duplicates in join keys.
-    * Missed a clue that had already been discussed over the weekend that turned out to be the root cause
-    * User permissions change for everyone (not just updates) got checked in which was flushing the cache on every update. This would be visible in a separate audit log, not the main query log.
+  * [Redshift cluster slowdown](#severe-redshift-cluster-slowdown)
+  * [Hive cluster instability](#hive-resource-usage-dashboard)
 * Roadmap planning
   * 10% exploiting previous long term investments. If it was executed well, shouldn't take more overhead than this.
   * 50% on medium term - responding to changing business requirements
@@ -85,7 +72,64 @@
       * Story points completed per sprint
       * Increase in high priority backlog size
 
+### Stories
 
+#### AG energy data platform
+* When I joined - RoR app on MySQL with cron job running forecast models in R for ~10 installations.
+* Architected scalable platform for processing and forecasting time series data from millions of smart meters.
+* Saw early on that data platform needed to be decoupled from forecasting algorithm development.
+* Envisioned and delivered *containerized* approach with:
+  * Hadoop / HBase timeseries ingestion and serving backend.
+  * Isolated Python containers within MapReduce environment for distributed training and forecasting.
+  * Ability for data scientists to develop models independent of data platform roadmap.
+* Impact - successful deployment to millions of smart meters in Oklahoma.
+
+#### DSP forecasting system
+* Context
+  * Existing marketplace balance models were wildly inaccurate after  COVID-19 shock.
+  * Needed replacement models to inform marketplace lever (incentives / acquisition spend) budgeting decisions.
+  * **My guiding insight** - a forecast model is of limited utility if it needs a lot of manual effort to operate and validate, and therefore cannot be widely used by non data scientists.
+* Identified and validated essential requirements (time to ship, no-touch / full automation, SLA, data quality, observability and monitoring) and non-requirements (distributed training, real time, external features)
+  * Aggressively pruned the solution search space to minimize technical execution risk given the tight delivery timeline.
+  * Designed end to end production system with proven components, heavy use of defensive checks, alerts, circuit breakers and visualizations to monitor / output quality.
+* Set technical direction and execution pace for cross functional team (decision science, forecasting platform) that hadn't worked together before.
+* Identified individual teams members' technical comparative advantages (e.g.data science, data engineering) so they could lean into their strengths and also coached them to uplevel in areas they were lacking background (e.g. defensive coding, production system troubleshooting).
+* **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.
+
+#### Driver Engagement team
+  * Context
+    * Newly formed DE pod didn't have trust of DS team.
+    * Frequent failures and data quality issues in (poorly written) Hive pipelines.
+    * Legacy Redshift pipelines that were hitting scale limits were viewed as superior
+    * DS team felt DE was imposing new tech on them and taking away their ability to self serve.
+  * Identified lack of tracking mechanism for data issues and set up JIRA.
+  * Automated data quality and parity checks for every stage of ETL to fail early
+  * Optimize ETL for faster recovery in the event of upstream data issues.
+  * Coached DS team members on effective use of Hive pipelines.
+  * **Impact**: number of reported issues dropped from 13 a month to 3 a month in just 3 months.
+
+#### DE oncall
+
+##### Severe Redshift cluster slowdown
+* Context
+  * Redshift pipelines inexplicably slowed to a crawl and were missing 9am SLAs.
+  * Took over oncall after initial investigation completed over the weekend.
+  * Lots of red herrings.
+* Led the war room effort
+  * Initial hypothesis was some tables had developed data skew due to exponential growth through duplicates in join keys.
+  * Split up work across engineers to investigate potential candidates for skew.
+  * Missed a clue that had already been discussed over the weekend that ultimately turned out to be the root cause.
+* User permissions change scheduled job for all users (not just updates) got checked in that flushed the cluster cache on every update, causing the slowdown. These changes would be written to a separate audit log, not the main query log.
+* **Impact** - issue got resolved, but not after a major grind with multiple engineers and AWS support involved.
+
+##### Hive resource usage dashboard
+
+* Context
+  * Hive jobs randomly stopped progressing and ultimately failed in the cluster and missed SLAs.
+  * Individual job failure investigations yielded several red herrings, but the general pattern was of cluster instability.
+* No dashboard existed that tied Hive cluster resource utilization to individual pipelines. Data existed at an individual query level.
+* Envisioned and implemented a prototype that tied Hive queries to pipelines / ETL tables and visualized top resource hogs.
+* **Impact** - unlocked oncall's ability to quickly identify any rogue pipelines that were destabilizing cluster health.    
 
 
 ### Example questions
@@ -95,10 +139,12 @@
 * Previous teams and management
 	* What was it like working with them?
 	* What would they say are your biggest strengths?
-	  * Steady hand during tense back to back incidents
+	  * Steady hand during tense times during technical outages.
 	* What would they say were areas for improvement?
 * Helping a team succeed when you weren't the official leader
 * How do you work individually and in a team
+  * Individual contribution doesn't exist in a vacuum - either the team succeeds or fails. How do I leverage my contribution to make the team succeed?
+  * My view - I have a breadth of experience and expertise and can wear multiple hats. I identify what strengths team members bring to the table and what successful project delivery needs. I help team members lean in on their strengths, and I fill in for the skill gaps.
 * How do you help others?
 * How do you navigate ambiguity?
 * How do you push yourself to grow outside of your comfort zone

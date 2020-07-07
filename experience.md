@@ -9,7 +9,8 @@
 > Make things as simple as possible but no simpler - Einstein
 
 * Simple systems have fewer failure modes.
-* Always need to have fallback plans for when things fail, the final fallback being some type of manual intervention - and the more complex a system is, the harder it is to manually keep operational.
+* Easier to pinpoint root causes and make improvements.
+* Always need to have fallback plans for when things fail, the final fallback being some type of manual intervention - and the more simple a system is, the easier it is switch over to manual mode.
 
 
 ### Automation
@@ -17,6 +18,13 @@
 
 * Automation provides leverage, and I like to view all software engineering efforts through the lens of automation leverage.
 * We need to be careful to plan for what happens when the automation breaks down.
+
+### Efficiency & Slack Tradeoff
+
+* Maximizing system efficiency by definition requires cutting slack - insight from [convex optimization formulation](https://en.wikipedia.org/wiki/Convex_optimization#Lagrange_multipliers)
+* Having zero slack means no cushion to handle unforeseen shocks to the system. Too much slack is wasteful.
+* Important to highlight and align on assumptions and tradeoffs, and revisit periodically.
+* Elastic cloud services allow having your cake and eating it too. Still have to validate configured caps.
 
 ## Leading
 
@@ -43,7 +51,7 @@
 * Build relationships and get multiple data points for diversity of context and insights.
 * Build trust with common goal in mind.
 
-### Building Trust
+### Building trust
 * Pick up the (grunt) work teams are unwilling / unable to do because it a) falls between team boundaries b) isn’t shiny and exciting c) people in the teams don’t have the necessary background.
 * In my experience this kind of work has outsize impact because it enables smooth end to end operation across teams.
 * Building trust in this manner pre-empts turf battles and opens up access to future opportunities for impact.
@@ -51,17 +59,17 @@
   * [Driver Engagement team](#driver-engagement-team)
   * [DSP forecasting system](#dsp-forecasting-system)
 
-### Identifying true needs
-
-### Strengths
-* Developed a reputation for strong analytical chops / data sense - uncommon for SWE.
-  * Great at data visualization and telling a story.
-  * My approach
-    * Present easy to grok analysis to stakeholders and walk them through my take. Do they agree with it?
-    * Get buy-in or disagree and commit.
-    * Builds trust and people tend to reach out for advice.
-* Distilling ambiguous requirements and designing and delivering strong technical solutions.
-
+### Incubating new efforts and partnerships
+* Increase leverage and impact through cross team efforts.
+* Build relationships with senior ICs and managers across teams.
+* Important to vet true needs from stated needs.  
+  * What resources are partners willing to commit?
+  * What efforts have been put in so far?
+  * How engaged are they in spec definition and feedback?
+  * Get multiple backchannel opinions
+* Examples
+  * Business chat
+  * [DSP forecasting system](#dsp-forecasting-system)
 
 
 ## Technical
@@ -84,6 +92,20 @@
       * Story points completed per sprint
       * Increase in high priority backlog size
 
+## Strengths
+* Developed a reputation for strong analytical chops / data sense - uncommon for SWE.
+  * Great at data visualization and telling a story.
+  * My approach
+    * Walk stakeholders through easy to grok data analysis and recommendation. Do they agree with it?
+    * Get buy-in or disagree and commit.
+    * Builds trust and people tend to reach out for advice.
+* Distilling ambiguous requirements and then designing and delivering strong technical solutions.
+* Steady hand during tense times e.g. during technical outages.
+* Following through and taking things to closure.
+* Full stack expertise makes me a good pinch hitter - I can quickly ramp up and contribute on cross functional projects and help take them across the finish line.
+* Broad industry background.
+* Owning gaps in my knowledge and knowing when to seek help.
+
 ## Improvement Areas
 
 ### Address blind spots
@@ -96,27 +118,32 @@
   * I was getting stuck in a cycle of a) being all in on a shiny new path b) getting turned off by lack of progress or setbacks c) questioning whether I had made the right choice. e.g
     * Transitioning from SWE to data science (due to perceived increase in prestige) to data engineering and back to SWE.
     * Getting turned off at not being chosen for desirable projects when I thought I was best suited for them. e.g. AG
-    * Feeling like I deserved to be doing "*intellectual*" work and being resentful when given grunt work as being a reflection of how my abilities were perceived. e.g. Facebook
+    * Feeling like I deserved to be doing "*intellectual*" work and being resentful when given grunt work and assuming that was a reflection of how my abilities were perceived. e.g. Facebook
   * I finally broke the cycle at Lyft after considerable self reflection and talking to mentors when I noticed the same loop repeating itself.
   * **Learnings**
     * No one knows or cares if I am awesome - they have plenty of their own shit to worry about. I need to establish that trust anew in every new environment.
     * Doing (impactful) grunt work nobody is willing to do is actually an amazing way to quickly build trust. Even better if I can automate it.
-    * Once I build the trust and reputation, folks open up about their deep challenges and are eager to build a true partnership.
-    * To dig past superficial understanding (what you can pull from a Google search or blogs) to deep and hidden insights, one needs to stick with a path through tough times and periods of doubt. This is when insights present themselves that you didn't even know existed or were important. e.g.
-      * Directing and upleveling team output is higher leverage than optimizing my personal technical contributions for the most prestigious work. Much better to help the team deliver and I fill in the skill gaps to make that happen.
-      * Importance of driving the problem statement process and [pre-empting stakeholder needs](#preempt-and-guide-stakeholder-needs).
+    * Once I build trust and reputation, folks open up about their deeper challenges and are eager to build a true partnership.
+    * Awareness of surface level problems that are often common knowledge (i.e can be found in a Google search) is not valuable. To earn access to the next level of challenges, one needs to stick with a path through tough times and periods of doubt. This is when deep insights present themselves that I didn't even know existed or were important. e.g.
+      * Directing and up-leveling team output provides much more leverage than me optimizing my individual technical contributions by chasing more *prestigious* work. Much better to help the team deliver and I can fill in the skill gaps needed to make that happen.
+      * Importance of driving the roadmap process and [pre-empting stakeholder needs](#influence-long-term-stakeholder-roadmaps).
 
-### Preempt and guide stakeholder needs
-* I used to think that my involvement as an engineer began once the business problem was defined by stakeholders and I was just responsible for solution design and delivery.
-* This mindset was a blind spot of mine - I learned about it during one of my checkins, and I realized that it was self limiting, given all the industry experience I had.
-* Showed intentional improvement with this insight in the [DSP forecasting project](#dsp-forecasting-system).
+### Influence long term stakeholder roadmaps
+* What does this involve?
+  * Ideation and alignment on charter.
+  * Anticipate and guide stakeholder needs.
+  * Collaborative prioritization.
+  * Highlight and explain tradeoffs.
+* I used to think that my role as an engineer was in solution design and delivery, *after* the business problem had been identified by stakeholders.
+* This self limiting mindset was a major blind spot, given all the industry experience I had. It came to my attention during one of my checkins.
+* I showed intentional improvement in the [DSP forecasting project](#dsp-forecasting-system).
   * Socialized the importance of SLA, observability and monitoring, data quality and circuit breakers.
-  * Got buy-in for these areas of focus in the project while cutting out the distractions (distributed training, real time sources)
+  * Got buy-in for these areas of focus in the project while deprioritizing the distractions (distributed training, real time sources)
 * **Learnings**
-  * Use my industry experience and technical knowledge to anticipate and communicate stakeholder needs ahead of them even being aware of them, and lay out a recommended solution. This builds trust, reduces the number of things they need to worry about and helps everyone succeed.
+  * I need to lean in on my industry experience and technical expertise to anticipate and communicate stakeholder needs ahead of them even being aware of them, and lay out a recommended roadmap. This builds trust, reduces the cognitive burden for stakeholders, and helps everyone succeed.
   * Demonstrates ownership of the business outcome.
 
-### Validate stakeholder assumptions
+### Vet stakeholder assumptions
 * Be proactive and assertive in questioning stakeholder assumptions in a collaborative way. What if the stakeholders have blind spots that could benefit from additional perspective? e.g.
   * [Hive migration timing](#driver-engagement-team)
   * [GDPR data quality](#gdpr-backend)
@@ -146,7 +173,7 @@
 * Identified individual teams members' technical comparative advantages (e.g.data science, data engineering) so they could lean into their strengths and also coached them to uplevel in areas they were lacking background (e.g. defensive coding, production system troubleshooting).
 * **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.
 
-### GDPR Backend
+### GDPR backend
 * Context
   * Company wide effort to comply with GDPR / CCPA within 6 month timeframe.
   * Major unchartered territory in terms of requirements.
@@ -154,17 +181,20 @@
   * Worked with stakeholders (privacy council) and partners (frontend, orchestration teams) to define requirements and technical roadmap.
   * Led team of 3 engineers for implementation, load testing, internal user testing and delivery of end to end solution.
 * Major challenges
-  * Data quality issue blew up after internal tests showed incorrect data. This caused a loss of exec trust in the project progress.
-  * Despite history, took full ownership of the oversight and led a thorough data quality investigation of all data sources
-  * Socialized easy to grok visual summary of investigation and recommendations to allow stakeholders to take decisions on the path forward.
-  * Mitigation effort was extremely well received.
+  * Data quality
+    * Issue blew up after internal tests showed incorrect data. This caused a loss of exec trust in the project progress.
+    * Took full ownership of the oversight and led a thorough data quality investigation of all data sources.
+    * Socialized easy to grok analysis and follow up plan that became a key reference for stakeholders in driving critical next step discussions.
+    * Mitigation effort was extremely well received.
+  * Pinch hitter to recover peer team delivery timeline
+    * Led defect triage and resolution effort for hundreds of distinct failure cases.
 * **Impact**
   * On schedule delivery of data export service for ~2000 users per day at launch with no outages.
+  * Smooth, predictable delivery with no surprises, hitting all internal and external milestones.
 * **Learnings and missed opportunities**
-  * During early phases of the project, the general consensus was that data quality was not important - the law just stated that we should export any data we have.
-  * I could have been more critical of this assumption - what about user trust if we export visibly incorrect data? What about the impact on customer support?
+  * During early phases of the project, the general consensus was that data quality was not important - the law just stated that we should export any data we have. I could have been more critical of this assumption - what about user trust if we export visibly incorrect data? What about the impact on customer support?
 
-### Driver Engagement team
+### Driver engagement team
 * Context
   * Newly formed DE pod didn't have trust of stakeholder (DS) team.
   * Frequent failures and data quality issues in (poorly written) Hive pipelines.
@@ -217,21 +247,35 @@
 * **Impact**
   * Successful deployment to millions of smart meters in Oklahoma.   
 
+### Low points
+* Early into Lyft
+  * Lack of direction three months in after successful delivery of initial project.
+  * Stakeholder team members had moved on to other teams. No immediate impactful projects were presenting themselves within the current team.
+  * Wasn't getting my EM and skip's buy-in about projects I wanted to work on.
+  * Felt a lack of trust after my efforts to change teams were blocked.
+  * In hindsight, I hadn't been proactive about nurturing key relationships outside the team to identify, vet and incubate impactful opportunities myself. I'd assumed that was EM's role and my role was technical design and execution.
+  * After the setback, I was determined this time around to get past the tough period to:
+    * Prove to myself that I can do it.
+    * See what new things I learn and internalize them.
+  * Agreed to disagree and commit to projects my EM identified and saw them through to successful completion.
+  * **Impact**
+    * Broke out of my nagging self doubt that I had a habit of giving up too early.
+    * Going through a few perf cycles, I got valuable feedback that helped me identify and fix blind spots that I didn't know existed or were important.
 
 ## Example questions
 * What were you hired to do?
-* What accomplishments are you most proud of in these roles?
-* What were some low points during that job?
+* What [accomplishments](#stories) are you most proud of in these roles?
+* What were some [low points](#low-points) during that job?
 * Previous teams and management
 	* What was it like working with them?
-	* What would they say are your biggest strengths?
-	  * Steady hand during tense times during technical outages.
-	* What would they say were areas for improvement?
-    * Evangelize and drive adoption of new solutions I have developed
+	* What would they say are your biggest [strengths](#strengths)?
+	* What would they say were [areas for improvement](#improvement-areas)?
 * Helping a team succeed when you weren't the official leader
+  * [DSP forecasting system](#dsp-forecasting-system)
+  * [GDPR backend](#gdpr-backend)
 * How do you work individually and in a team
-  * Individual contribution doesn't exist in a vacuum - either the team succeeds or fails. How do I leverage my contribution to make the team succeed?
-  * My view - I have a breadth of experience and expertise and can wear multiple hats. I identify what strengths team members bring to the table and what successful project delivery needs. I help team members lean in on their strengths, and I fill in for the skill gaps.
+  * My view is individual contribution doesn't exist in a vacuum - either the team succeeds or fails. I ask myself how do I leverage my contribution to make the team succeed?
+  * I have a breadth of experience and expertise and can wear multiple hats. I identify what strengths team members bring to the table and what the project needs for successful ship. I help team members lean in on their strengths, coach their improvement areas nd I fill in for the skill gaps.
 * How do you help others?
 * How do you navigate ambiguity?
 * How do you push yourself to grow outside of your comfort zone

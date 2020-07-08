@@ -181,18 +181,18 @@
   * Cumulative sum - e.g. find quantity bought so far
   ```
   saletime,
-  sum(qty) over (partition by buyerid order by saletime rows unbounded preceding) as cum_sum
+  sum(qty) over (partition by buyerid order by saletime rows between unbounded preceding and current row) as cum_sum
   ```
   * Sliding window sum
     * e.g. backward looking 7 day rolling sum of quantity bought
     ```
     saletime,
-    sum(qty) over (partition by buyerid order by saletime rows 7 preceding) as prev7day_sum
+    sum(qty) over (partition by buyerid order by saletime rows between 6 preceding and current row) as prev7day_sum
     ```
     * e.g. forward looking 7 day rolling sum of quantity bought
     ```
     saletime,
-    sum(qty) over (partition by buyerid order by saletime rows 7 following) as next7day_sum
+    sum(qty) over (partition by buyerid order by saletime rows between current row and 6 following) as next7day_sum
     ```
   * First value / last value
     * e.g. find time of first and last purchase per buyer

@@ -8,7 +8,7 @@
 * [Common Operations](#common-operations)
   * [Substring / subarray](#substring--subarray)
   * [Initialize a list of n integers / characters](#initialize-a-list-of-n-integers)  
-  * [Initialize a m x n array of integers / characters](#initialize-an-array-of-integers)  
+  * [Initialize a n x m array of integers / characters](#initialize-an-array-of-integers)  
   * [Sort a dict / array of tuples](#sort-a-dict--array-of-tuples)
   * [Flatten a 2 level nested list](#flatten-a-2-level-nested-list)
   * [Trim a string (use strip)](#trim-a-string)
@@ -135,7 +135,7 @@ l = [0] * n    # create a list of n zeroes
 ```
 # the construct [[0] * m] * n doesn't work since it reuses references 
 # to the inner list, not what we want.
-arr = [[0] * m for i in range(n)]    # create a m x n array of zeroes
+arr = [[0] * m for i in range(n)]    # create a n x m array of zeroes (n rows, m columns)
 ```
 
 ### Sort a dict array / tuple array

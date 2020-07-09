@@ -25,6 +25,9 @@
 * Having zero slack means no cushion to handle unforeseen shocks to the system. Too much slack is wasteful.
 * Important to highlight and align on assumptions and tradeoffs, and revisit periodically.
 * Elastic cloud services allow having your cake and eating it too. Still have to validate configured caps.
+  * Model scaling behavior with [back of the envelope calculations](#https://static.googleusercontent.com/media/research.google.com/en//people/jeff/stanford-295-talk.pdf).
+  * [Benchmark](#https://stackoverflow.com/questions/19863857/hardware-requirements-for-presto) and validate hypothesis.
+  * Identify bottlenecks (network, disk, CPU) and maintain resource utilization with predefined cushion.
 
 ## Leading
 
@@ -169,6 +172,7 @@
 * Identified and validated core requirements (time to ship, no-touch / full automation, SLA, data quality, observability and monitoring) and non-requirements (distributed training, real time, external features)
   * Aggressively pruned the solution search space to minimize technical execution risk given the tight delivery timeline.
   * Designed end to end production system with proven components, heavy use of defensive checks, alerts, circuit breakers and visualizations to monitor / output quality.
+  * Linear lasso regression model with trend seasonality decomposition.
 * Set technical direction and execution pace for cross functional team (decision science, forecasting platform) that hadn't worked together before.
 * Identified individual teams members' technical comparative advantages (e.g.data science, data engineering) so they could lean into their strengths and also coached them to uplevel in areas they were lacking background (e.g. defensive coding, production system troubleshooting).
 * **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.

@@ -17,7 +17,8 @@
 * Linked list - all pointers that need to be advanced are being advanced.
 * Validate logic works in termination case as well e.g. right after breaking out of a loop
 * Set visited flag for graph traversal.
-* Keep talking through ways to improve solution after getting the basic implementation right.
+* **Keep talking through ways to improve the solution** after getting the basic implementation right.
+* **Keep bringing up tradeoffs.**
 * Python specific
   * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
   * When calculating mid point of two array indexes, cast as int. Otherwise Python converts to float which will cause an index exception.
@@ -187,7 +188,17 @@
   * Design an elevator
   * Design a Parking System
   
-### SQL 
+### Data Modeling
+
+* Granularity is a crucial aspect to think through.
+  * Aim for finest granularity that has all the detail needed for current and possible future use cases, but not too fine to impact performance.
+* Star schema vs denormalized table tradeoffs
+  * Can get latest dimensional attributes by joining with dimensional table, which is harder to do with denormalized tables.
+  * Can avoid potentially expensive joins with denormalized tables.
+  * Easier to debug data issues in denormalized tables.
+* Ingest vs query performance tradeoff.
+
+### SQL
 
 * Use [CTEs](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL#Common_table_expression) liberally
 * Windowing functions

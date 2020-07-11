@@ -192,6 +192,7 @@
 
 * Granularity is a crucial aspect to think through.
   * Aim for finest granularity that has all the detail needed for current and possible future use cases, but not too fine to impact performance.
+* Additive vs non-additive (like ratios) metrics.
 * Star schema vs denormalized table tradeoffs
   * Can get latest dimensional attributes by joining with dimensional table, which is harder to do with denormalized tables.
   * Can avoid potentially expensive joins with denormalized tables.

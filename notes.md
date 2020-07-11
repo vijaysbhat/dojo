@@ -6,6 +6,9 @@
   * Duplicates in arrays
   * Empty and null strings / arrays.
 * Validate input size and return values for degenerate cases.
+* Clarify size of the input.
+  * Does it fit in memory?
+  * If using recursion, state that you don't want to blow the stack.
 * Store the length of the array in a variable.
 * Array counters being initialized correctly esp. for nested loops.
 * Array counters are being incremented in all the required locations.
@@ -98,7 +101,7 @@
   * Improves upon Dijkstra by using the currently known *true* distance to the source plus a heuristic distance (known ahead of time, e.g. Euclidian distance) so more promising paths are explored first.
   * Correctness - if the heuristic distance is guaranteed to be less than or equal to the true distance, we can trivially see that it will give us the correct result.
 
-### Streaming algorithms
+### Streaming Algorithms
   * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)
     * Maintain random sample of k elements (without replacement) from stream
     * Read first k elements from stream
@@ -141,6 +144,21 @@
 * Resources
   * https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/
   * https://www.oreilly.com/radar/the-world-beyond-batch-streaming-102/
+  
+### Stream Join Processing
+* Ship strategies
+  * Repartition
+    * Both datasets are large. 
+    * Cost is shuffling both full datasets across the network.
+  * Broadcast
+    One of the datasets is small. 
+* Local join strategies (after ship)
+  * Hash join
+    * If hash table is too large to fit in memory spill segments to disk.
+    * When joining second table if join key isn't in memory spill record to disk and rejoin on a subsequent segment of the hash table.
+  * Sort merge join
+    * In memory sort or external merge sort.
+* Flink does [custom memory management](https://flink.apache.org/news/2015/03/13/peeking-into-Apache-Flinks-Engine-Room.html) to prevent OOM crashes (spilling to disk at 70% usage)
 
 
 ## Other Concepts

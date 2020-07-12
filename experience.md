@@ -38,6 +38,11 @@
     * Team member realizes the answer to their question through talking through the problem. Best form of persuasion is when the person comes up with the solution themselves.
 * Influence is built through reputation and trust.
 
+### Establishing leadership in a new team 
+* Learn wide and deep as quickly as possible. 
+* Execute quick wins to build credibility.
+* Give credit publicly to team members for impactful work. 
+
 ### Mentoring
 * I find mentoring a wonderful and fulfilling way to leverage impact.
 * My method:

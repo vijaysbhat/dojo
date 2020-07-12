@@ -3,16 +3,17 @@
 * Create test cases - normal and degenerate valued. e.g.
   * Odd and even length palindrome matches.
   * Odd and even length arrays for finding medians.
-  * Duplicates in arrays
+  * Duplicates in arrays.
+  * Can integer values be negative? Can there be overflow / underflow?
   * Empty and null strings / arrays.
 * Validate input size and return values for degenerate cases.
 * Clarify size of the input.
   * Does it fit in memory?
   * If using recursion, state that you don't want to blow the stack.
+* For dynamic programming /recursion validate whether the inductive step needs to use a single subproblem or all subproblems.
 * Store the length of the array in a variable.
 * Array counters being initialized correctly esp. for nested loops.
 * Array counters are being incremented in all the required locations.
-* Can integer values be negative? Can there be overflow / underflow?
 * All branches of conditional (if/else) statements being explicitly handled.
 * Linked list - all pointers that need to be advanced are being advanced.
 * Validate logic works in termination case as well e.g. right after breaking out of a loop

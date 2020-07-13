@@ -1,19 +1,41 @@
-## Models
+## Concepts
 
-|Algorithm|Loss Function|Runtime|Distributed version| 
-|---|---|---|---|
-|Linear Regression|   |   |   | 
-|Logistic Regression|   |   |   | 
-|Decision Trees|   |   |   | 
-|Random Forests|   |   |   | 
-|Boosted Trees|   |   |   | 
-|PCA|   |   |   | 
-|K Nearest Neighbors|   |   |   | 
-|K Means Clustering|   |   |   | 
-|Naive Bayes|   |   |   | 
-|EM|   |   |   | 
-|Embeddings|   |   |   | 
+### Linear Regression
+* L2 loss = `\|\|Y - X.beta\|\|^2`, closed form solution `beta = (X_T.X)^-1.X_T.Y`
+* Runtime = `O((n+d)* d^2)`
+* Distributed training - SGD
 
+### Logistic Regression
+* Loss function
+  * single class - [binary cross entropy loss](#https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression)
+  * multiclass - [cross entropy](#https://www.cs.princeton.edu/courses/archive/spring16/cos495/slides/ML_basics_lecture7_multiclass.pdf) 
+* Activation function
+  * single class - sigmoid
+  * multiclass - softmax
+
+### Decision Trees
+
+### Support Vector Machine
+
+### Random Forests
+
+### Boosted Trees
+
+### KNN
+
+### K-means Clustering
+
+### Naive Bayes
+
+### Expectation Maximization
+* Same as MAP (maximum a priori) and maximum likelihood.
+
+### Embeddings
+
+### Regularization
+* L1 - drives down number of non zero coefficients
+* L2 - drives down value of feature coefficients
+* Dropout
 
 ## Terms
 * odds = `p/(1-p)`

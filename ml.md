@@ -37,6 +37,7 @@
 ### Backpropagation
 * Iterative algorithm to train multilayer neural networks.
 * Use optimizers (SGD, Adam etc) for direction training should take based on value of loss function.
+* Single step forward + backprop runtime = `O(mnk)` where n = input dimensions, m = output dimensions, k = batch size assuming naive matrix multiplication
 
 ### Regularization
 * L1 - drives down number of non zero coefficients

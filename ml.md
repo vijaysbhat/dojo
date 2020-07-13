@@ -4,7 +4,7 @@
 * L2 loss = `\|\|Y - X.beta\|\|^2`
 * Closed form solution `beta = (X_T.X)^-1.X_T.Y`
 * Runtime = `O((n+d)* d^2)`
-* Distributed training - SGD
+* Distributed training - backprop with SGD optimizer
 
 ### Logistic Regression
 * Loss function
@@ -32,6 +32,11 @@
 * Same as MAP (maximum a priori) and maximum likelihood.
 
 ### Embeddings
+
+
+### Backpropagation
+* Iterative algorithm to train multilayer neural networks.
+* Use optimizers (SGD, Adam etc) for direction training should take based on value of loss function.
 
 ### Regularization
 * L1 - drives down number of non zero coefficients

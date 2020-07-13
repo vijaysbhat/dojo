@@ -1,7 +1,8 @@
 ## Concepts
 
 ### Linear Regression
-* L2 loss = `\|\|Y - X.beta\|\|^2`, closed form solution `beta = (X_T.X)^-1.X_T.Y`
+* L2 loss = `\|\|Y - X.beta\|\|^2`
+* Closed form solution `beta = (X_T.X)^-1.X_T.Y`
 * Runtime = `O((n+d)* d^2)`
 * Distributed training - SGD
 

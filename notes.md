@@ -128,7 +128,7 @@
       * hash table of size k for fast lookup by key
     * when new event arrives
       * lookup and update the frequency for its key in the count-min sketch
-      * if the key exists in the hash table, increment its count there
+      * if the key exists in the hash table, increment its count there, update the value in the min-heap.
       * if the key doesn't exist in the hash table
         * test if the count is greater than the count for smallest top-k key from the min-heap.
           * if yes, evict the smallest key from the min-heap and replace with the new key. replace the hash table entry for the evicted key with the new key

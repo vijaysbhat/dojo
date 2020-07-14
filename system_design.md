@@ -372,6 +372,33 @@ Power           Exact Value         Approx Value        Bytes
 * Graph DB
   * e.g. Neo4J
 
+### Consistent Hashing
+
+* Uses
+  * Fundamental algorithm behind CDNs (Akamai)
+  * Distributed hash tables
+* How does it work?
+  * Map each key to a point on a circle (or equivalently, mapping each key to a real angle).
+  * Map each available machine (or other storage bucket) to many pseudo-randomly distributed points on the same circle. Number of points each server maps to is configurable.  
+* Placing a key
+  * Find the location of the key on the circle
+  * Walk around the circle until the first server / bucket encountered
+* Resizing the cluster
+  * Add / remove all the points on the circle corresponding to the new / invalid servers
+  * Remap keys to the closest server point on the circle.
+  * Due to random distribution of server points on the circle, the redistribution is balanced across servers.  
+* Time complexity - K keys and N slots
+
+||Classic Hash Table|Consistent Hashing|
+|--|--|--|
+|add a node|O(K)|O(K/N + log N)|
+|remove a node|O(K)|O(K/N + log N)|
+|add a key|O(1)|O(log N)|
+|remove a key|O(1)|O(log N)|
+
+* Mapping **each server to multiple points on the circle** is what achieves the O(K/N) property for resizing. Otherwise a server going down would require all keys for that server to mapped to the next server in the circle, doubling its load.
+
+
 ### SQL vs NoSQL
 
 * SQL
@@ -399,7 +426,7 @@ Power           Exact Value         Approx Value        Bytes
     * Less storage
     * More compute
     
-### Data Formats
+### Data Storage Formats
 
 #### [Parquet](https://databricks.com/session_eu19/the-parquet-format-and-performance-optimization-opportunities)
 * Data orginization - hybrid of row and columnar formats
@@ -416,32 +443,11 @@ Power           Exact Value         Approx Value        Bytes
   * directory based partitions
   * avoid small files - compaction
       
+### Data Serialization Formats
 
-### Consistent Hashing
-
-* Uses
-  * Fundamental algorithm behind CDNs (Akamai)
-  * Distributed hash tables
-* How does it work?
-  * Map each key to a point on a circle (or equivalently, mapping each key to a real angle).
-  * Map each available machine (or other storage bucket) to many pseudo-randomly distributed points on the same circle. Number of points each server maps to is configurable.  
-* Placing a key
-  * Find the location of the key on the circle
-  * Walk around the circle until the first server / bucket encountered
-* Resizing the cluster
-  * Add / remove all the points on the circle corresponding to the new / invalid servers
-  * Remap keys to the closest server point on the circle.
-  * Due to random distribution of server points on the circle, the redistribution is balanced across servers.  
-* Time complexity - K keys and N slots
-
-||Classic Hash Table|Consistent Hashing|
-|--|--|--|
-|add a node|O(K)|O(K/N + log N)|
-|remove a node|O(K)|O(K/N + log N)|
-|add a key|O(1)|O(log N)|
-|remove a key|O(1)|O(log N)|
-
-* Mapping **each server to multiple points on the circle** is what achieves the O(K/N) property for resizing. Otherwise a server going down would require all keys for that server to mapped to the next server in the circle, doubling its load.
+* [Protobuf](https://developers.google.com/protocol-buffers/docs/proto3)
+* Thrift serialization
+* JSON
 
 ### Message Queues And Async Processing
 

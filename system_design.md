@@ -398,6 +398,24 @@ Power           Exact Value         Approx Value        Bytes
     * Parity / information theory based technique
     * Less storage
     * More compute
+    
+### Data Formats
+
+#### Parquet
+* Data orginization - hybrid of row and columnar formats
+  * Row groups (128 MB)
+  * Column chunks
+    * Pages (1 MB)
+      * Metadata (min / max / count)
+      * Encoded values (plain or RLE dictionary)
+        * If dictionary gets too big, reduce row group size.
+* Predicate pushdown through 
+  * skip entire row groups through min/max statistic, needs to be (semi)sorted on key to be useful.
+  * dictionary filtering
+* Optimization
+  * directory based partitions
+  * avoid small files - compaction
+      
 
 ### Consistent Hashing
 
@@ -632,6 +650,7 @@ Power           Exact Value         Approx Value        Bytes
 
 #### HBase
 * Architecture
+  * High throughput indexed writes through [log structured merge tree](#database-indexes)
   * Regions
     * Range of rows between a start key and end key
   * Region servers
@@ -653,6 +672,7 @@ Power           Exact Value         Approx Value        Bytes
   * Puts written to WAL (write ahead log) and MemStore
   * When MemStore threshold reached, flushed to disk as HFile
   * When number of HFiles reaches threshold, compaction kicks in
+  
 
 #### Spark
 * RDD - Resilient Distributed Dataset

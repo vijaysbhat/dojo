@@ -8,15 +8,13 @@
 
 ### Logistic Regression
 * Loss function
-  * single class - binary cross entropy / log loss = `-Σ(𝑦log(𝑝)+(1−𝑦)log(1−𝑝))`
-    * https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression) 
-  * multiclass - cross entropy
-    * https://www.cs.princeton.edu/courses/archive/spring16/cos495/slides/ML_basics_lecture7_multiclass.pdf
+  * single class - [binary cross entropy / log loss](http://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression) = `-Σ(𝑦log(𝑝)+(1−𝑦)log(1−𝑝))`
+  * multiclass - [cross entropy](https://www.cs.princeton.edu/courses/archive/spring16/cos495/slides/ML_basics_lecture7_multiclass.pdf)
 * Activation function
   * single class - sigmoid
   * multiclass - softmax
 
-### [Decision Trees](#http://cs229.stanford.edu/notes/cs229-notes-dt.pdf)
+### [Decision Trees](http://cs229.stanford.edu/notes/cs229-notes-dt.pdf)
 * Training runtime = `O(nfd)` where f = number of features, n = number of data points and d is depth of the tree. Worst case is `O(n^2f)` and best case is `O(nf log n)`
 * Scoring runtime = `O(log n)`
 * Hyperparameters
@@ -46,7 +44,7 @@
   * Find the optimal weight for the new learner by minimizing loss when combining the new learner with what has been trained so far.
   * Compute residuals and fit another weak learner and repeat.
 * Regularize subsequent trees by shrinkage factor = learning rate.
-* Why boosted trees [don't overfit](#https://jeremykun.com/2015/09/21/the-boosting-margin-or-why-boosting-doesnt-overfit/)?
+* [Why boosted trees don't overfit](https://jeremykun.com/2015/09/21/the-boosting-margin-or-why-boosting-doesnt-overfit/)
 * Hyperparameters
   * learning rate
   * num estimators
@@ -79,7 +77,7 @@
 
 ### Embeddings
 * Convert sparse input tensor to a dense representation with fewer dimensions.
-* Use embedding layer (same as dense layer but with [simplifying assumptions](#https://stackoverflow.com/questions/47868265/what-is-the-difference-between-an-embedding-layer-and-a-dense-layer)) as the first hidden layer in a neural net to train a prediction model.
+* Use embedding layer (same as dense layer but with [simplifying assumptions](https://stackoverflow.com/questions/47868265/what-is-the-difference-between-an-embedding-layer-and-a-dense-layer)) as the first hidden layer in a neural net to train a prediction model.
 * The embedding is the **output of the first hidden layer** and is obtained as a byproduct of the neural net training.
 
 ### Regularization
@@ -104,7 +102,7 @@
   * Model rating matrix `A ~ U_T.M` where U is the user embedding and M is the item embedding of dimension d.
   * Loss function = MSE (mean squared error) + regularization = `||(A - U_T.M||^2 + w||U_T.M||^2`
   * Training
-    * [Weighted alternating least squares](#https://developers.google.com/machine-learning/recommendation/collaborative/matrix)
+    * [Weighted alternating least squares](https://developers.google.com/machine-learning/recommendation/collaborative/matrix)
       * Initialize to random numbers.
       * Fix one matrix (U) and the loss function becomes convex for elements of the second matrix (M).
       * Use gradient descent to update weights of M.
@@ -131,8 +129,8 @@
 * Rerank based on user preferences and other factors like freshness, diversity, fairness.
 
 ## Resources
-* [Google news recommender paper](#https://www2007.org/papers/paper570.pdf)
-* [Google recommender systems course](#https://developers.google.com/machine-learning/recommendation/overview/types)
+* [Google news recommender paper](https://www2007.org/papers/paper570.pdf)
+* [Google recommender systems course](https://developers.google.com/machine-learning/recommendation/overview/types)
 
 ## Terms
 * odds = `p/(1-p)`

@@ -401,7 +401,7 @@ Power           Exact Value         Approx Value        Bytes
     
 ### Data Formats
 
-#### Parquet
+#### [Parquet](https://databricks.com/session_eu19/the-parquet-format-and-performance-optimization-opportunities)
 * Data orginization - hybrid of row and columnar formats
   * Row groups (128 MB)
   * Column chunks
@@ -672,7 +672,20 @@ Power           Exact Value         Approx Value        Bytes
   * Puts written to WAL (write ahead log) and MemStore
   * When MemStore threshold reached, flushed to disk as HFile
   * When number of HFiles reaches threshold, compaction kicks in
-  
+
+
+#### Elasticsearch
+* Architecture
+  * [Inverted index](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up) data structure.
+    * Index is sharded and replicated across multiple nodes.
+  * Queries received by coordinator and broadcast to all nodes.
+  * Dedicated ingest node to perform transformations in ingest path. 
+  * Monitoring
+    * Indexing buffer size
+    * Cache misses
+    * CPU usage
+    * OOM errors
+* Typical performance - 20qps at 500ms latency
 
 #### Spark
 * RDD - Resilient Distributed Dataset

@@ -85,6 +85,9 @@
 * L2 - drives down absolute value of feature coefficients.
 * Dropout
 
+## Decision Boundary Visualization
+* https://www.kdnuggets.com/2015/06/decision-boundaries-deep-learning-machine-learning-classifiers.html
+
 # Applications
 
 ## Recommender Systems

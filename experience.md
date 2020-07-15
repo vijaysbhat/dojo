@@ -53,6 +53,14 @@
   * Why?
     * Too much support and team member might be demoralized or resentful.
     * Too little support and team member might be demotivated and not even ask for help.
+* Examples
+  * Getting stakeholder buyin and keeping them in the loop.
+  * Prioritize unblocking current workstream over future implementation work.
+  * Building with observability and monitoring in mind
+    * Coach data scientists how to build scalable and fault tolerant pipelines.
+    * Coach DE how to monitor ML feature and output quality.
+  * Code optimization through profiling.
+  * Helping understand system architecture decisions.
 
 ### Turf battles
 * Have to manage / preempt them otherwise it reflects poorly across teams.
@@ -132,9 +140,10 @@
     * No one knows or cares if I am awesome - they have plenty of their own shit to worry about. I need to establish that trust anew in every new environment.
     * Doing (impactful) grunt work nobody is willing to do is actually an amazing way to quickly build trust. Even better if I can automate it.
     * Once I build trust and reputation, folks open up about their deeper challenges and are eager to build a true partnership.
-    * Awareness of surface level problems that are often common knowledge (i.e can be found in a Google search) is not valuable. To earn access to the next level of challenges, one needs to stick with a path through tough times and periods of doubt. This is when deep insights present themselves that I didn't even know existed or were important. e.g.
+    * Awareness of surface level / tablestakes problems that are often common knowledge (i.e can be found in a Google search) is not valuable - what's valuable are the hidden challenges that arise after solving tablestakes. To earn access to those, I need to stick with a path through tough times and periods of doubt. This is when deep insights present themselves that I didn't even know existed or were important. e.g.
       * Directing and up-leveling team output provides much more leverage than me optimizing my individual technical contributions by chasing more *prestigious* work. Much better to help the team deliver and I can fill in the skill gaps needed to make that happen.
       * Importance of driving the roadmap process and [pre-empting stakeholder needs](#influence-long-term-stakeholder-roadmaps).
+      * Technical example - data pipeline lineage visibility and quickly assessing downstream impact of failures is a hidden challenge that emerges after a tool like Airflow gains adoption. 
 
 ### Influence long term stakeholder roadmaps
 * What does this involve?

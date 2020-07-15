@@ -43,6 +43,14 @@
 * Execute quick wins to build credibility.
 * Give credit publicly to team members for impactful work. 
 
+### Driving long term roadmaps
+* Brainstorm project ideas based on understanding of business priorities.
+* Influence project prioritization through guidance on impact and tradeoffs (e.g.feature work vs SLA improvements) 
+* Examples
+  * Feature backfill functionality by extending online / offline ML feature service backend.
+  * Migrating dashboards to superset.
+  * Build automated tool to generate and configure campaigns across ad platforms.
+
 ### Mentoring
 * I find mentoring a wonderful and fulfilling way to leverage impact.
 * My method:
@@ -94,9 +102,10 @@
   * [Redshift cluster slowdown](#severe-redshift-cluster-slowdown)
   * [Hive cluster instability](#hive-resource-usage-dashboard)
 * Roadmap planning
-  * 10% exploiting previous long term investments. If it was executed well, shouldn't take more overhead than this.
-  * 50% on medium term - responding to changing business requirements
-  * 40% long term efforts - making future long term investments
+  * Guidelines
+    * 10% exploiting previous long term investments. If it was executed well, shouldn't take more overhead than this.
+    * 50% on medium term - responding to changing business requirements
+    * 40% long term efforts - making future long term investments
 * Rightsizing amount of process
   * Too little process - buggy code, delayed ship dates
     * How to measure

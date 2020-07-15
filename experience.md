@@ -224,7 +224,7 @@
 ### Driver engagement team
 * Context
   * Newly formed DE pod didn't have trust of stakeholder (DS) team.
-  * Frequent failures and data quality issues in (poorly written incremental build) Hive pipelines. Technical challenge was consolidating data from three different systems that had different views of incentive redemption.
+  * Frequent failures and data quality issues in (poorly written incremental build) Hive pipelines. Technical challenge was reconciling data from three different systems (e.g. experimentation, payments) that had different views of incentive redemption.
   * Legacy Redshift pipelines that were hitting scale limits were viewed as superior
   * DS team felt DE was imposing new tech on them and taking away their ability to self serve.
 * Identified lack of tracking mechanism for data issues and set up JIRA.

@@ -60,6 +60,16 @@
     * Prioritize incoming requests, gracefully degrade / backpressure / rate limit / drop lower priority requests
     * Pre-provision for known events - automated system?
   * Use of DNS for transparent switchover
+  
+### Clarifying Questions
+* Who is going to use it?
+* How are they going to use it?
+* How many users are there?
+* What does the system do?
+* What are the inputs and outputs of the system?
+* How much data do we expect to handle?
+* How many requests per second do we expect?
+* What is the expected read to write ratio?
 
 ## Latency Numbers
 ```

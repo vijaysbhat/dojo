@@ -694,8 +694,12 @@ Power           Exact Value         Approx Value        Bytes
 * Architecture
   * [Inverted index](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up) data structure.
     * Index is sharded and replicated across multiple nodes.
-  * Queries received by coordinator and broadcast to all nodes.
-  * Dedicated ingest node to perform transformations in ingest path. 
+  * Query path
+    * Queries received by coordinator and broadcast to all nodes / shards.
+    * More shards means more resources needed to query all of them. Consider using custom routing parameter to search a single shard.
+  * Ingest path
+    * Dedicated ingest node to perform transformations in ingest path. 
+    * More shards splits up the indexing workload more evenly. Tradeoff with query speed.
   * Monitoring
     * Indexing buffer size
     * Cache misses

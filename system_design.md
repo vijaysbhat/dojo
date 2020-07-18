@@ -17,10 +17,11 @@
 ## Areas Of Concern
 * **Entities / Data Model**
 * **Data Storage**
-  * KV store cluster
-  * Graph DB cluster
-  * Blobstore cluster
-  * Analytics cluster
+  * Relational DB
+  * KV store
+  * Graph DB
+  * Blobstore
+  * Analytics DB
   * CDN
 * **Backend Database Choice**
   * [SQL vs NoSQL](#sql-vs-nosql)

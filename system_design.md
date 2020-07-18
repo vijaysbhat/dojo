@@ -9,11 +9,25 @@
   * What are the inputs and outputs of the system?
   * How much data do we expect to handle?
   * How many requests per second do we expect?
+  * What is the required latency?
   * What is the expected read to write ratio?
 * **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them.**
+* **Back of the envelope sizing** - number of machines, RAM
 
 ## Areas Of Concern
+* **Entities / Data Model**
+* **Data Storage**
+  * KV store cluster
+  * Graph DB cluster
+  * Blobstore cluster
+  * Analytics cluster
+  * CDN
+* **Backend Database Choice**
+  * [SQL vs NoSQL](#sql-vs-nosql)
+* **Transport**
+  * [TCP vs UDP](#tcp-vs-udp)
 * **API Design**
+  * [RPC vs REST](#rpc-vs-rest)
 * **Security**
   * Authentication
   * Authorization
@@ -22,7 +36,8 @@
   * Malicious Attacks
 * **Scaling**
   * [Load balancer](#load-balancer)
-  * Horizontal stateless scaling
+  * Multithreading for scaling individual server throughput.
+  * Horizontal stateless scaling to increase overall throughput.
   * Caching layer
     * Application cache vs database cache
       * database cache more transparent
@@ -30,28 +45,12 @@
       * write-through reduces stampede on backend DB.
       * write-through cache makes writes slower but users more tolerant of write slowness than read slowness.
     * Write behind (async DB update)
-    * Scaling - Redis / Memcached
+    * Redis / Memcached
       * scales to ~100k qps (~2 ms latency) vs MySQL ~10k qps (~25 ms latency)
       * network bandwidth generally gets exhausted (1-10 Gbps) before CPU
   * [Relational Database scaling](#relational-database-scaling)
   * [Message queues](#message-queues-and-async-processing) to decouple backend processing
 * **Resource Isolation**
-* **Storage**
-  * KV store cluster
-  * Graph DB cluster
-  * Blobstore cluster
-  * Analytics cluster
-  * CDN
-* **Backend Database Choice**
-  * [SQL vs NoSQL](#sql-vs-nosql)
-* **Data Model Design**
-* **Availability Numbers**
-  * 3 nines downtime
-    * ~100 seconds per day
-    * ~10 hours per year
-  * 4 nines downtime
-    * ~10 seconds per day
-    * ~1 hour per year
 * **Deployment**
   * CI / CD
   * Staged rollout (staging, canary, prod %)
@@ -70,9 +69,21 @@
     * Active-passive
   * [Thundering herd](#thundering-herd)
   * Traffic bursts and events
-    * Prioritize incoming requests, gracefully degrade / backpressure / rate limit / drop lower priority requests
+    * Prioritize incoming requests
+    * Gracefully degrade
+    * Apply backpressure
+    * Rate limit
+    * Drop lower priority requests
     * Pre-provision for known events - automated system?
   * Use of DNS for transparent switchover
+* **Availability Numbers**
+  * 3 nines downtime
+    * ~100 seconds per day
+    * ~10 hours per year
+  * 4 nines downtime
+    * ~10 seconds per day
+    * ~1 hour per year
+
 
 
 
@@ -349,11 +360,11 @@ Power           Exact Value         Approx Value        Bytes
   * Raft
 
 ### Relational Database Scaling
-* **master-slave replication**
-  * when master is down, operate in read-only mode until slave promoted to master.
-* **master-master replication**
-  * allows read-write mode even when one of the masters is down.
-  * synchronization and conflict resolution hard between masters.
+* **primary-secondary replication**
+  * when primary is down, operate in read-only mode until secondary promoted to primary.
+* **primary-primary replication**
+  * allows read-write mode even when one of the primaries is down.
+  * synchronization and conflict resolution hard between primaries.
 * **federation**
   * split up databases by function e.g.users, products etc.
   * smaller database size, less traffic and replication.

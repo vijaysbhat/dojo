@@ -38,14 +38,14 @@
     * Team member realizes the answer to their question through talking through the problem. Best form of persuasion is when the person comes up with the solution themselves.
 * Influence is built through reputation and trust.
 
-### Establishing leadership in a new team 
-* Learn wide and deep as quickly as possible. 
+### Establishing leadership in a new team
+* Learn wide and deep as quickly as possible.
 * Execute quick wins to build credibility.
-* Give credit publicly to team members for impactful work. 
+* Give credit publicly to team members for impactful work.
 
 ### Driving long term roadmaps
 * Brainstorm project ideas based on understanding of business priorities.
-* Influence project prioritization through guidance on impact and tradeoffs (e.g.feature work vs SLA improvements) 
+* Influence project prioritization through guidance on impact and tradeoffs (e.g.feature work vs SLA improvements)
 * Examples
   * Feature backfill functionality by extending online / offline ML feature service backend.
   * Migrating dashboards to superset.
@@ -124,7 +124,7 @@
     * Walk stakeholders through easy to grok data analysis and recommendation. Do they agree with it?
     * Get buy-in or disagree and commit.
     * Builds trust and people tend to reach out for advice.
-* Distilling ambiguous requirements and then designing and delivering strong technical solutions.
+* Distilling ambiguous business requirements, evaluating technical options for tradeoffs, planning and executing delivery of strong technical solutions.
 * Steady hand during tense times e.g. during technical outages.
 * Following through and taking things to closure.
 * Full stack expertise makes me a good pinch hitter - I can quickly ramp up and contribute on cross functional projects and help take them across the finish line.
@@ -152,7 +152,7 @@
     * Awareness of surface level / tablestakes problems that are often common knowledge (i.e can be found in a Google search) is not valuable - what's valuable are the hidden challenges that arise after solving tablestakes. To earn access to those, I need to stick with a path through tough times and periods of doubt. This is when deep insights present themselves that I didn't even know existed or were important. e.g.
       * Directing and up-leveling team output provides much more leverage than me optimizing my individual technical contributions by chasing more *prestigious* work. Much better to help the team deliver and I can fill in the skill gaps needed to make that happen.
       * Importance of driving the roadmap process and [pre-empting stakeholder needs](#influence-long-term-stakeholder-roadmaps).
-      * Technical example - data pipeline lineage visibility and quickly assessing downstream impact of failures is a hidden challenge that emerges after a tool like Airflow gains adoption. 
+      * Technical example - data pipeline lineage visibility and quickly assessing downstream impact of failures is a hidden challenge that emerges after a tool like Airflow gains adoption.
 
 ### Influence long term stakeholder roadmaps
 * What does this involve?
@@ -198,6 +198,7 @@
   * Linear lasso regression model with trend seasonality decomposition.
 * Set technical direction and execution pace for cross functional team (decision science, forecasting platform) that hadn't worked together before.
 * Identified individual teams members' technical comparative advantages (e.g.data science, data engineering) so they could lean into their strengths and also coached them to uplevel in areas they were lacking background (e.g. defensive coding, production system troubleshooting).
+* Surfaced issues early and transparently to keep stakeholders informed.
 * **Impact**: On schedule delivery of high impact and fully automated forecast pipeline that *just works*.
 
 ### GDPR backend

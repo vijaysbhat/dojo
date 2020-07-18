@@ -1,7 +1,19 @@
 # System Design Notes
 
-## Areas Of Concern
+## Approach
+* **Ask clarifying questions**
+  * Who is going to use it?
+  * How are they going to use it?
+  * How many users are there?
+  * What does the system do?
+  * What are the inputs and outputs of the system?
+  * How much data do we expect to handle?
+  * How many requests per second do we expect?
+  * What is the expected read to write ratio?
+* **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them.**
 
+## Areas Of Concern
+* **API Design**
 * **Security**
   * Authentication
   * Authorization
@@ -32,6 +44,7 @@
   * CDN
 * **Backend Database Choice**
   * [SQL vs NoSQL](#sql-vs-nosql)
+* **Data Model Design**
 * **Availability Numbers**
   * 3 nines downtime
     * ~100 seconds per day
@@ -60,16 +73,8 @@
     * Prioritize incoming requests, gracefully degrade / backpressure / rate limit / drop lower priority requests
     * Pre-provision for known events - automated system?
   * Use of DNS for transparent switchover
-  
-### Clarifying Questions
-* Who is going to use it?
-* How are they going to use it?
-* How many users are there?
-* What does the system do?
-* What are the inputs and outputs of the system?
-* How much data do we expect to handle?
-* How many requests per second do we expect?
-* What is the expected read to write ratio?
+
+
 
 ## Latency Numbers
 ```
@@ -220,7 +225,7 @@ Power           Exact Value         Approx Value        Bytes
     * maintained by sender to prevent *link* from getting overloaded
   * **receive (sliding) window**
     * used for flow control
-    * advertised by receiver to prevent *receiver* from getting overloaded 
+    * advertised by receiver to prevent *receiver* from getting overloaded
     * packets received out of order are rearranged in order within the receive window
   * **slow start**
     * congestion window set to 1 MSS (maximum segment size)
@@ -435,7 +440,7 @@ Power           Exact Value         Approx Value        Bytes
     * Parity / information theory based technique
     * Less storage
     * More compute
-    
+
 ### Data Storage Formats
 
 #### [Parquet](https://databricks.com/session_eu19/the-parquet-format-and-performance-optimization-opportunities)
@@ -446,13 +451,13 @@ Power           Exact Value         Approx Value        Bytes
       * Metadata (min / max / count)
       * Encoded values (plain or RLE dictionary)
         * If dictionary gets too big, reduce row group size.
-* Predicate pushdown through 
+* Predicate pushdown through
   * skip entire row groups through min/max statistic, needs to be (semi)sorted on key to be useful.
   * dictionary filtering
 * Optimization
   * directory based partitions
   * avoid small files - compaction
-      
+
 ### Data Serialization Formats
 
 * [Protobuf](https://developers.google.com/protocol-buffers/docs/proto3)
@@ -698,7 +703,7 @@ Power           Exact Value         Approx Value        Bytes
     * Queries received by coordinator and broadcast to all nodes / shards.
     * More shards means more resources needed to query all of them. Consider using custom routing parameter to search a single shard.
   * Ingest path
-    * Dedicated ingest node to perform transformations in ingest path. 
+    * Dedicated ingest node to perform transformations in ingest path.
     * More shards splits up the indexing workload more evenly. Tradeoff with query speed.
   * Monitoring
     * Indexing buffer size
@@ -729,4 +734,3 @@ Power           Exact Value         Approx Value        Bytes
 * https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/
 * https://www.the-paper-trail.org/post/2008-11-29-consensus-protocols-three-phase-commit/
 * [Facebook memcached paper](https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf)
-

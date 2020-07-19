@@ -138,7 +138,8 @@
 * I used to think that as an engineer, all my impact was through the technical strength of my solutions. I was not even aware of other more important aspects of impact.
 * Most of the improvement areas below were blind spots of mine that I am grateful to have been made aware of.
 
-### Impatience to see progress / giving up too early
+### Impatience to see progress / giving up [too early](https://www.samuelthomasdavies.com/book-summaries/business/the-dip/)
+> It’s human nature to quit when it hurts. But it’s that reflex that creates scarcity. The Dip creates scarcity; scarcity creates value. - Seth Godin
   * Most consistent feedback I'd been receiving in the past which I've addressed with maturity in recent years.
   * I was getting stuck in a cycle of a) being all in on a shiny new path b) getting turned off by lack of progress or setbacks c) questioning whether I had made the right choice. e.g
     * Transitioning from SWE to data science (due to perceived increase in prestige) to data engineering and back to SWE.

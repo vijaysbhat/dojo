@@ -29,6 +29,15 @@
   * [TCP vs UDP](#tcp-vs-udp)
 * **API Design**
   * [RPC vs REST](#rpc-vs-rest)
+  * REST for external facing services
+    * Text based, easier customer adoption and support. 
+  * RPC for internal service communication
+    * Better performance, scaling best practices baked in.
+* **Supporting Backend Services**
+  * Service discovery - Zookeeper, consul
+  * Communication
+    * Synchronous - RPC, REST
+    * Async - [message queues](#message-queues-and-async-processing) like [Kafka](#kafka-internals), RabbitMQ
 * **Security**
   * Authentication
   * Authorization

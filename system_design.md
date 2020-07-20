@@ -12,7 +12,7 @@
   * What is the required latency?
   * What is the expected read to write ratio?
 * **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them.**
-* **Back of the envelope sizing** - number of machines, RAM, cost
+* **Back of the envelope sizing** - number of machines, RAM, cost, SLA (estimate failure rate, detection and response time) 
 
 ## Areas Of Concern
 * **Entities / Data Model**

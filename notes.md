@@ -198,7 +198,12 @@
   * Can get latest dimensional attributes by joining with dimensional table, which is harder to do with denormalized tables.
   * Can avoid potentially expensive joins with denormalized tables.
   * Easier to debug data issues in denormalized tables.
+* Query and join optimization
+  * Partition on low cardinality columns with not much skew in the distribution.
+  * Hash and bucket on high cardinality columns (clustering).
 * Ingest vs query performance tradeoff.
+  * Partitioning and clustering add to ingest time due to data shuffle.
+* [ERD diagram](https://stackoverflow.com/questions/9200789/how-represent-multiple-similar-foreign-keys-in-erd-database-diagram)
 
 ### SQL
 

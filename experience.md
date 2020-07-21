@@ -31,6 +31,28 @@
 
 ## Leading
 
+### Three Pillars
+* Ownership
+  * [Anticipating stakeholder needs](#influence-long-term-stakeholder-roadmaps).
+  * [Questioning stakeholder assumptions](#vet-stakeholder-assumptions).
+  * Commitment to delivery schedule.
+  * Surfacing issues early and transparently.
+  * Owning failures and recovery plans.
+  * [Drive adoption](#drive-adoption-of-solutions).
+* Teamwork & collaboration
+  * [Driving longterm roadmaps](#driving-long-term-roadmaps)
+  * [Mentoring](#mentoring)
+  * Driving process
+  * Helping other teams succeed
+* Technical excellence
+  * Deep understanding of options
+    * Cutting edge but untested failure modes.
+    * Battle tested and well understood.
+    * Component reuse.
+  * [Simplicity and automation](#designing-systems)
+  * Tradeoffs
+    * Delivery schedule vs system capabilities
+
 ### Influencing people
 * Ask lots of questions and actually listen to answers. Guide people to arrive at answers themselves.
   * Why?
@@ -140,6 +162,7 @@
 
 ### Impatience to see progress / giving up [too early](https://www.samuelthomasdavies.com/book-summaries/business/the-dip/)
 > It’s human nature to quit when it hurts. But it’s that reflex that creates scarcity. The Dip creates scarcity; scarcity creates value. - Seth Godin
+
   * Most consistent feedback I'd been receiving in the past which I've addressed with maturity in recent years.
   * I was getting stuck in a cycle of a) being all in on a shiny new path b) getting turned off by lack of progress or setbacks c) questioning whether I had made the right choice. e.g
     * Transitioning from SWE to data science (due to perceived increase in prestige) to data engineering and back to SWE.

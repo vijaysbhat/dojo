@@ -93,9 +93,9 @@
 * Dijkstra's shortest path
   * Steps
     * Initialize all nodes as unvisited, create a lookup table of distance to source initialized to infinity / None.
-    * Set source node distance to zero (by definition) and add node to priority queue.
+    * Set source node distance to zero (by definition) and add all nodes to priority queue.
     * Get the node from the priority queue with the minimum distance value. **<< KEY STEP**
-    * For each unvisited neighbor, update its distance value to the source if the path through the current node is shorter.
+    * For each unvisited neighbor, update its distance value to the source in the queue if the path through the current node is shorter.
     * Mark the current node as visited and repeat the loop until the target is reached.
   * Greedy algorithm and can take a very meandering path
   * Correctness reasoning - when we get the minimum distance valued node from the priority queue, it satisfies the shortest path property to the source. Why? If there were a shorter path, it would have to traverse from the set of visited nodes to the unvisited nodes, back to the visited nodes and then the currently selected node. If that were the case, a node in the previous section of the path in the unvisited nodes should have been selected from the priority queue. **This is why the positive edge weights requirement is crucial.**

@@ -36,7 +36,7 @@
 
 ### Logistic Regression
 * Loss function
-  * single class - [binary cross entropy / log loss](http://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression) = `-Σ(𝑦log(𝑝)+(1−𝑦)log(1−𝑝))` where y is the 1 / 0 label and p is the predicted probability.
+  * single class - [binary cross entropy / log loss](http://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression) = `-Σ(ylog(y_hat)+(1−y)log(1−y_hat))` where y is the 1 / 0 label and y_hat is the predicted probability.
   * multiclass - [cross entropy](https://www.cs.princeton.edu/courses/archive/spring16/cos495/slides/ML_basics_lecture7_multiclass.pdf)
 * Training - no closed form solution, use gradient descent.
 * Activation function

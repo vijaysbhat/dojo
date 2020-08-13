@@ -11,10 +11,17 @@
   * How many requests per second do we expect?
   * What is the required latency?
   * What is the expected read to write ratio?
-* **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them.**
+* **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them, highlighting options and tradeoffs.**
 * **Back of the envelope sizing** - number of machines, RAM, cost, SLA (estimate failure rate, detection and response time) 
 
 ## Areas Of Concern
+* **Supporting Backend Services**
+  * Where does the service being designed fit in?
+  * Highlight **separation of concerns.**
+  * Service discovery - Zookeeper, consul
+  * Communication
+    * Synchronous - RPC, REST
+    * Async - [message queues](#message-queues-and-async-processing) like [Kafka](#kafka-internals), RabbitMQ
 * **Entities / Data Model**
 * **Data Storage**
   * Relational DB
@@ -33,11 +40,6 @@
     * Text based, easier customer adoption and support. 
   * RPC for internal service communication
     * Better performance, scaling best practices baked in.
-* **Supporting Backend Services**
-  * Service discovery - Zookeeper, consul
-  * Communication
-    * Synchronous - RPC, REST
-    * Async - [message queues](#message-queues-and-async-processing) like [Kafka](#kafka-internals), RabbitMQ
 * **Security**
   * Authentication
   * Authorization

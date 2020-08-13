@@ -303,6 +303,13 @@
 * **Impact**
   * Successful deployment to millions of smart meters in Oklahoma.   
 
+### Mistakes made
+* ASA campaign structure
+  * Took Apple reps word at face value that campaigns wouldn't compete with each other. 
+  * Overlapping campaings were needed due to lack of negative geo targeting on the platform.
+  * Caused huge spend increase on 50% rollout when the targeting overlap was significant. 
+
+
 ### Low points
 * Early into Lyft
   * Lack of direction three months in after successful delivery of initial project.

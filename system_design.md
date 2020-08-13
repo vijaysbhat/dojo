@@ -1,7 +1,45 @@
 # System Design Notes
 
-## Areas Of Concern
+## Approach
+* **Ask clarifying questions**
+  * Who is going to use it?
+  * How are they going to use it?
+  * How many users are there?
+  * What does the system do?
+  * What are the inputs and outputs of the system?
+  * How much data do we expect to handle?
+  * How many requests per second do we expect?
+  * What is the required latency?
+  * What is the expected read to write ratio?
+* **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them, highlighting options and tradeoffs.**
+* **Back of the envelope sizing** - number of machines, RAM, cost, SLA (estimate failure rate, detection and response time) 
 
+## Areas Of Concern
+* **Supporting Backend Services**
+  * Where does the service being designed fit in?
+  * Highlight **separation of concerns.**
+  * Service discovery - Zookeeper, consul
+  * Communication
+    * Synchronous - RPC, REST
+    * Async - [message queues](#message-queues-and-async-processing) like [Kafka](#kafka-internals), RabbitMQ
+* **Entities / Data Model**
+* **Data Storage**
+  * Relational DB
+  * KV store
+  * Graph DB
+  * Blobstore
+  * Analytics DB
+  * CDN
+* **Backend Database Choice**
+  * [SQL vs NoSQL](#sql-vs-nosql)
+* **Transport**
+  * [TCP vs UDP](#tcp-vs-udp)
+* **API Design**
+  * [RPC vs REST](#rpc-vs-rest)
+  * REST for external facing services
+    * Text based, easier customer adoption and support. 
+  * RPC for internal service communication
+    * Better performance, scaling best practices baked in.
 * **Security**
   * Authentication
   * Authorization
@@ -10,7 +48,8 @@
   * Malicious Attacks
 * **Scaling**
   * [Load balancer](#load-balancer)
-  * Horizontal stateless scaling
+  * Multithreading for scaling individual server throughput.
+  * Horizontal stateless scaling to increase overall throughput.
   * Caching layer
     * Application cache vs database cache
       * database cache more transparent
@@ -18,28 +57,13 @@
       * write-through reduces stampede on backend DB.
       * write-through cache makes writes slower but users more tolerant of write slowness than read slowness.
     * Write behind (async DB update)
-    * Scaling - Redis / Memcached
+    * Redis / Memcached
       * scales to ~100k qps (~2 ms latency) vs MySQL ~10k qps (~25 ms latency)
       * network bandwidth generally gets exhausted (1-10 Gbps) before CPU
   * [Relational Database scaling](#relational-database-scaling)
   * [Message queues](#message-queues-and-async-processing) to decouple backend processing
 * **Resource Isolation**
-* **Storage**
-  * KV store cluster
-  * Graph DB cluster
-  * Blobstore cluster
-  * Analytics cluster
-  * CDN
-* **Backend Database Choice**
-  * [SQL vs NoSQL](#sql-vs-nosql)
-* **Availability Numbers**
-  * 3 nines downtime
-    * ~100 seconds per day
-    * ~10 hours per year
-  * 4 nines downtime
-    * ~10 seconds per day
-    * ~1 hour per year
-* Deployment
+* **Deployment**
   * CI / CD
   * Staged rollout (staging, canary, prod %)
   * Small holdout to compare changes to previous version
@@ -57,9 +81,23 @@
     * Active-passive
   * [Thundering herd](#thundering-herd)
   * Traffic bursts and events
-    * Prioritize incoming requests, gracefully degrade / backpressure / rate limit / drop lower priority requests
+    * Prioritize incoming requests
+    * Gracefully degrade
+    * Apply backpressure
+    * Rate limit
+    * Drop lower priority requests
     * Pre-provision for known events - automated system?
   * Use of DNS for transparent switchover
+* **Availability Numbers**
+  * 3 nines downtime
+    * ~100 seconds per day
+    * ~10 hours per year
+  * 4 nines downtime
+    * ~10 seconds per day
+    * ~1 hour per year
+
+
+
 
 ## Latency Numbers
 ```
@@ -80,7 +118,7 @@ Redis query latency                  2,000,000   ns    2,000 us    2 ms
 Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
 Read 1 MB sequentially from 1 Gbps  10,000,000   ns   10,000 us   10 ms  40x memory, 10X SSD
 MySQL query latency                 25,000,000   ns   25,000 us   25 ms
-Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 120x memory, 30X SSD
+Read 1 MB sequentially from disk    30,000,000   ns   30,000 us   30 ms 30MB/sec, 120x memory, 30X SSD
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms 3000x data center round trip
 
 Notes
@@ -130,6 +168,7 @@ Power           Exact Value         Approx Value        Bytes
 #### CDN
 
 * Push vs Pull (On-demand) CDN
+* Use for high popularity / traffic content
 
 #### OSI model
 
@@ -205,7 +244,12 @@ Power           Exact Value         Approx Value        Bytes
     * resend segment - **fast retransmit**
     * enter congestion avoidance state
   * **congestion window**
-    * set of packets that are sent without gating on ACK
+    * set of TCP segments that are sent without waiting for ACK from receiver
+    * maintained by sender to prevent *link* from getting overloaded
+  * **receive (sliding) window**
+    * used for flow control
+    * advertised by receiver to prevent *receiver* from getting overloaded
+    * packets received out of order are rearranged in order within the receive window
   * **slow start**
     * congestion window set to 1 MSS (maximum segment size)
     * increased by 1 for each ACK received, which doubles the window size each round trip delay time (RTT)
@@ -260,10 +304,6 @@ Power           Exact Value         Approx Value        Bytes
     * IP address + port based
   * Level 7 (application layer)
     * e.g. video traffic routed to video servers
-
-### Multithreading
-
-
 
 ### Unique ID Generation
 
@@ -332,11 +372,11 @@ Power           Exact Value         Approx Value        Bytes
   * Raft
 
 ### Relational Database Scaling
-* **master-slave replication**
-  * when master is down, operate in read-only mode until slave promoted to master.
-* **master-master replication**
-  * allows read-write mode even when one of the masters is down.
-  * synchronization and conflict resolution hard between masters.
+* **primary-secondary replication**
+  * when primary is down, operate in read-only mode until secondary promoted to primary.
+* **primary-primary replication**
+  * allows read-write mode even when one of the primaries is down.
+  * synchronization and conflict resolution hard between primaries.
 * **federation**
   * split up databases by function e.g.users, products etc.
   * smaller database size, less traffic and replication.
@@ -370,6 +410,33 @@ Power           Exact Value         Approx Value        Bytes
 * Graph DB
   * e.g. Neo4J
 
+### Consistent Hashing
+
+* Uses
+  * Fundamental algorithm behind CDNs (Akamai)
+  * Distributed hash tables
+* How does it work?
+  * Map each key to a point on a circle (or equivalently, mapping each key to a real angle).
+  * Map each available machine (or other storage bucket) to many pseudo-randomly distributed points on the same circle. Number of points each server maps to is configurable.  
+* Placing a key
+  * Find the location of the key on the circle
+  * Walk around the circle until the first server / bucket encountered
+* Resizing the cluster
+  * Add / remove all the points on the circle corresponding to the new / invalid servers
+  * Remap keys to the closest server point on the circle.
+  * Due to random distribution of server points on the circle, the redistribution is balanced across servers.  
+* Time complexity - K keys and N slots
+
+||Classic Hash Table|Consistent Hashing|
+|--|--|--|
+|add a node|O(K)|O(K/N + log N)|
+|remove a node|O(K)|O(K/N + log N)|
+|add a key|O(1)|O(log N)|
+|remove a key|O(1)|O(log N)|
+
+* Mapping **each server to multiple points on the circle** is what achieves the O(K/N) property for resizing. Otherwise a server going down would require all keys for that server to mapped to the next server in the circle, doubling its load.
+
+
 ### SQL vs NoSQL
 
 * SQL
@@ -397,29 +464,28 @@ Power           Exact Value         Approx Value        Bytes
     * Less storage
     * More compute
 
-### Consistent Hashing
+### Data Storage Formats
 
-* Uses
-  * Fundamental algorithm behind CDNs (Akamai)
-  * Distributed hash tables
-* How does it work?
-  * Map each key to a point on a circle (or equivalently, mapping each key to a real angle).
-  * Map each available machine (or other storage bucket) to many pseudo-randomly distributed points on the same circle. Number of points each server maps to is configurable.  
-* Placing a key
-  * Find the location of the key on the circle
-  * Walk around the circle until the first server / bucket encountered
-* Resizing the cluster
-  * Add / remove all the points on the circle corresponding to the new / invalid servers
-  * Remap keys to the closest server point on the circle.
-  * Due to random distribution of server points on the circle, the redistribution is balanced across servers.  
-* Time complexity - K keys and N slots
-||Classic Hash Table|Consistent Hashing|
-|--|--|--|
-|add a node|O(K)|O(K/N + log N)|
-|remove a node|O(K)|O(K/N + log N)|
-|add a key|O(1)|O(log N)|
-|remove a key|O(1)|O(log N)|
-* Mapping **each server to multiple points on the circle** is what achieves the O(K/N) property for resizing. Otherwise a server going down would require all keys for that server to mapped to the next server in the circle, doubling its load.
+#### [Parquet](https://databricks.com/session_eu19/the-parquet-format-and-performance-optimization-opportunities)
+* Data orginization - hybrid of row and columnar formats
+  * Row groups (128 MB)
+  * Column chunks
+    * Pages (1 MB)
+      * Metadata (min / max / count)
+      * Encoded values (plain or RLE dictionary)
+        * If dictionary gets too big, reduce row group size.
+* Predicate pushdown through
+  * skip entire row groups through min/max statistic, needs to be (semi)sorted on key to be useful.
+  * dictionary filtering
+* Optimization
+  * directory based partitions
+  * avoid small files - compaction
+
+### Data Serialization Formats
+
+* [Protobuf](https://developers.google.com/protocol-buffers/docs/proto3)
+* Thrift serialization
+* JSON
 
 ### Message Queues And Async Processing
 
@@ -483,6 +549,7 @@ Power           Exact Value         Approx Value        Bytes
 #### Instagram
 * photos stored as blobs on S3 and replicated to CDNs
   * storing photos in a file system is suboptimal due to high amount of redundant metadata
+  * use CDNs for popular / high traffic content
   * Facebook Haystack paper
 * distributed id generation
   * autoincrement makes sharding impossible
@@ -627,6 +694,7 @@ Power           Exact Value         Approx Value        Bytes
 
 #### HBase
 * Architecture
+  * High throughput indexed writes through [log structured merge tree](#database-indexes)
   * Regions
     * Range of rows between a start key and end key
   * Region servers
@@ -648,6 +716,24 @@ Power           Exact Value         Approx Value        Bytes
   * Puts written to WAL (write ahead log) and MemStore
   * When MemStore threshold reached, flushed to disk as HFile
   * When number of HFiles reaches threshold, compaction kicks in
+
+
+#### Elasticsearch
+* Architecture
+  * [Inverted index](https://www.elastic.co/blog/found-elasticsearch-from-the-bottom-up) data structure.
+    * Index is sharded and replicated across multiple nodes.
+  * Query path
+    * Queries received by coordinator and broadcast to all nodes / shards.
+    * More shards means more resources needed to query all of them. Consider using custom routing parameter to search a single shard.
+  * Ingest path
+    * Dedicated ingest node to perform transformations in ingest path.
+    * More shards splits up the indexing workload more evenly. Tradeoff with query speed.
+  * Monitoring
+    * Indexing buffer size
+    * Cache misses
+    * CPU usage
+    * OOM errors
+* Typical performance - 20qps at 500ms latency
 
 #### Spark
 * RDD - Resilient Distributed Dataset
@@ -671,4 +757,3 @@ Power           Exact Value         Approx Value        Bytes
 * https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/
 * https://www.the-paper-trail.org/post/2008-11-29-consensus-protocols-three-phase-commit/
 * [Facebook memcached paper](https://www.usenix.org/system/files/conference/nsdi13/nsdi13-final170_update.pdf)
-

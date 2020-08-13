@@ -1,13 +1,29 @@
 
 ## Code Review Checklist
-* Input size and return values for degenerate cases.
-* Array counters are being incremented in all the required locations.
+* Create test cases - normal and degenerate valued. e.g.
+  * Odd and even length palindrome matches.
+  * Odd and even length arrays for finding medians.
+  * Duplicates in arrays.
+  * Can integer values be negative? Can there be overflow / underflow?
+  * Empty and null strings / arrays.
+* Validate input size and return values for degenerate cases.
+* Clarify size of the input.
+  * Does it fit in memory?
+  * If using recursion, state that you don't want to blow the stack.
+* For dynamic programming /recursion validate whether the inductive step needs to use a single subproblem or all subproblems.
 * Store the length of the array in a variable.
+* Array counters being initialized correctly esp. for nested loops.
+* Array counters are being incremented in all the required locations.
 * All branches of conditional (if/else) statements being explicitly handled.
 * Linked list - all pointers that need to be advanced are being advanced.
+* Validate logic works in termination case as well e.g. right after breaking out of a loop
+* Set visited flag for graph traversal.
+* **Keep talking through ways to improve the solution** after getting the basic implementation right.
+* **Keep bringing up tradeoffs.**
 * Python specific
   * Append to a list in a separate statement and return the variable in the following statement. List append returns None in Python.
-  * Initializing a 2-D array gotcha - `[[0] * n] * m]` doesn't work since it creates an array of m references to the same row! Use `[[0] * n] * i for i in range(m)]` instead.
+  * When calculating mid point of two array indexes, cast as int. Otherwise Python converts to float which will cause an index exception.
+  * Initializing a 2-D array gotcha - `[[0] * m] * n` doesn't work since it creates an array of n references to the same row! Use `[[0] * m for i in range(n)]` instead to create a n x m array (n rows, m columns).
 
 ## Problem Solving Patterns
 * Sorting
@@ -53,15 +69,41 @@
 
 * Three O(n) algorithms - KMP, Boyer-Moore and Robin Karp
 * Robin-Karp easiest to understand
-  * Replace string comparisons with hash based *fingerprint* comparisons
-  * A *rolling* hash allows reuse of the previous substring hash value as the sliding window for comparison advances in the larger string
+  * Replace string comparisons with hash based **fingerprint** comparisons
+  * A **rolling** hash allows reuse of the previous substring hash value as the sliding window for comparison advances in the larger string
 * **Steps**
   * Take the hash of the smaller substring (size m).
   * Starting from the beginning of the larger string (size n) advance a sliding window comparing hash value with the smaller string and incrementally updating the hash value.
   * If there is a match of hash values, check for an actual match because there could be a hash collision.
 * **O(m+n)** run time as long as the hash function doesn't have a lot of collisions
 
-### Streaming algorithms
+### Binary Search Trees
+
+* [Deletion](https://en.wikipedia.org/wiki/Binary_search_tree#Deletion)
+  * Node has no children - trivial
+  * Node has one child - swap child with node to be deleted
+  * Node has two children
+    * Find successor to node in right subtree and replace value in node to be deleted.
+    * If replacement node has children, it's only a right child - update replacement node's parent to point to that child node.
+    * Delete replacement node.
+  * **NOTE** no tree rotation operation required.
+  
+### Graph Algorithms
+
+* Dijkstra's shortest path
+  * Steps
+    * Initialize all nodes as unvisited, create a lookup table of distance to source initialized to infinity / None.
+    * Set source node distance to zero (by definition) and add all nodes to priority queue.
+    * Get the node from the priority queue with the minimum distance value. **<< KEY STEP**
+    * For each unvisited neighbor, update its distance value to the source in the queue if the path through the current node is shorter.
+    * Mark the current node as visited and repeat the loop until the target is reached.
+  * Greedy algorithm and can take a very meandering path
+  * Correctness reasoning - when we get the minimum distance valued node from the priority queue, it satisfies the shortest path property to the source. Why? If there were a shorter path, it would have to traverse from the set of visited nodes to the unvisited nodes, back to the visited nodes and then the currently selected node. If that were the case, a node in the previous section of the path in the unvisited nodes should have been selected from the priority queue. **This is why the positive edge weights requirement is crucial.**
+* A* algorithm - directed shortest path
+  * Improves upon Dijkstra by using the currently known *true* distance to the source plus a heuristic distance (known ahead of time, e.g. Euclidian distance) so more promising paths are explored first.
+  * Correctness - if the heuristic distance is guaranteed to be less than or equal to the true distance, we can trivially see that it will give us the correct result.
+
+### Streaming Algorithms
   * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)
     * Maintain random sample of k elements (without replacement) from stream
     * Read first k elements from stream
@@ -86,11 +128,128 @@
       * hash table of size k for fast lookup by key
     * when new event arrives
       * lookup and update the frequency for its key in the count-min sketch
-      * if the key exists in the hash table, increment its count there
+      * if the key exists in the hash table, increment its count there, update the value in the min-heap.
       * if the key doesn't exist in the hash table
         * test if the count is greater than the count for smallest top-k key from the min-heap.
           * if yes, evict the smallest key from the min-heap and replace with the new key. replace the hash table entry for the evicted key with the new key
           * if no, discard the new key and move on to the next event
 * [MinHash](https://en.wikipedia.org/wiki/MinHash)
   * fast approximation for Jaccard Similarity
+  
+### Stream Processing Model
+* Useful for reasoning about unbounded datasets - pretty much every real world example.
+* Batch is a special case of stream processing.
+* Event time vs processing time.
+* Watermark is the a function of processing time p_t - maximum event time e_t <= p_t such that every event time e_t' <= e_t has arrived.
+* Fixed window, rolling window and dynamic (session) window processing.
+* Triggers - when to materialize the window. Can materialize at periodic intervals until the watermark and then for every late arriving data element within the lateness horizon of the watermark.
+* Resources
+  * https://www.oreilly.com/radar/the-world-beyond-batch-streaming-101/
+  * https://www.oreilly.com/radar/the-world-beyond-batch-streaming-102/
+  
+### Stream Join Processing
+* Ship strategies
+  * Repartition
+    * Both datasets are large. 
+    * Cost is shuffling both full datasets across the network.
+  * Broadcast
+    One of the datasets is small. 
+* Local join strategies (after ship)
+  * Hash join
+    * If hash table is too large to fit in memory spill segments to disk.
+    * When joining second table if join key isn't in memory spill record to disk and rejoin on a subsequent segment of the hash table.
+  * Sort merge join
+    * In memory sort or external merge sort.
+* Flink does [custom memory management](https://flink.apache.org/news/2015/03/13/peeking-into-Apache-Flinks-Engine-Room.html) to prevent OOM crashes (spilling to disk at 70% usage)
 
+
+## Other Concepts
+
+### Multithreading
+
+* Java
+  * Implement Runnable interface
+  * Extend Thread class (limiting due to lack of multiple inheritance in Java)
+* Synchronization
+  * synchronized methods in the object (class or instance)
+  * synchronized block
+  * locks
+* Python
+  * Not possible to do truly concurrent multithreading (i.e. utilize multicore CPU) due to GIL
+  * Useful for I/O heavy tasks that wait on resources being available
+  * No improvement for CPU heavy tasks
+  * Use ThreadPoolExecutor from concurrent.futures
+  * Use threading.Lock to synchronize control
+
+
+### Object Oriented Design
+
+* Practice questions
+  * Design an ATM
+  * Design an elevator
+  * Design a Parking System
+  
+### Data Modeling
+
+* Granularity is a crucial aspect to think through.
+  * Aim for finest granularity that has all the detail needed for current and possible future use cases, but not too fine to impact performance.
+* Additive vs non-additive (like ratios) metrics.
+* Star schema vs denormalized table tradeoffs
+  * Can get latest dimensional attributes by joining with dimensional table, which is harder to do with denormalized tables.
+  * Can avoid potentially expensive joins with denormalized tables.
+  * Easier to debug data issues in denormalized tables.
+* Query and join optimization
+  * Partition on low cardinality columns with not much skew in the distribution.
+  * Hash and bucket on high cardinality columns (clustering).
+* Ingest vs query performance tradeoff.
+  * Partitioning and clustering add to ingest time due to data shuffle.
+* [ERD diagram](https://stackoverflow.com/questions/9200789/how-represent-multiple-similar-foreign-keys-in-erd-database-diagram)
+
+### SQL
+
+* Use [CTEs](https://en.wikipedia.org/wiki/Hierarchical_and_recursive_queries_in_SQL#Common_table_expression) liberally
+* Windowing functions
+  * Lead / Lag - e.g. find previous / next quantity bought
+  ```
+  lag(qty,1) over (partition by buyerid order by saletime) as prev_qty
+  lead(qty,1) over (partition by buyerid order by saletime) as next_qty
+  ```
+  * Cumulative sum - e.g. find quantity bought so far
+  ```
+  saletime,
+  sum(qty) over (partition by buyerid order by saletime rows between unbounded preceding and current row) as cum_sum
+  ```
+  * Sliding window sum
+    * e.g. backward looking 7 day rolling sum of quantity bought
+    ```
+    saletime,
+    sum(qty) over (partition by buyerid order by saletime rows between 6 preceding and current row) as prev7day_sum
+    ```
+    * e.g. forward looking 7 day rolling sum of quantity bought
+    ```
+    saletime,
+    sum(qty) over (partition by buyerid order by saletime rows between current row and 6 following) as next7day_sum
+    ```
+  * First value / last value
+    * e.g. find time of first and last purchase per buyer
+    ```
+    first_value(saletime) over (partition by buyerid order by saletime) as first_purchase_time,
+    last_value(saletime) over (partition by buyerid order by saletime) as last_purchase_time
+      ```
+  * Rank
+    * Use row_number() instead of rank() since rank() can have duplicates
+    * e.g.find latest purchases by each buyer
+    ```
+    row_number() over (partition by buyerid order by saletime desc) as rnk
+    ...
+    where rnk = 1
+    ```
+  * Percentile
+    * e.g. find top 50% of purchases by quantity
+    ```
+    percent_rank() over (partition by buyerid order by qty) as pctile
+    ...
+    where pctile > 0.5
+    ```
+* Review resources
+  * https://docs.aws.amazon.com/redshift/latest/dg/r_Window_function_examples.html

@@ -1,4 +1,31 @@
 
+# Experience
+
+* Background
+  * Tech lead for marketing automation team.
+  * Led teams and projects in DE under Growth org, including GDPR export effort with company wide impact.
+  * Built user facing backend services, data infra, data pipelines and productionized ML models.
+* Track record
+  * [DSP short term forecasting](#dsp-forecasting-system)
+  * [GDPR export](#gdpr-backend)
+  * C1 recommendation system
+  * AG energy data platform
+* [Strengths](#strengths)
+  * End to end delivery of projects starting from ambiguous business requirements, evaluating technical solutions and enabling team execution.
+  * Data skills to communicate and influence decision making.
+  * Calm handling of tense situations.
+  * Pinch hitter to bring back projects in the red.
+* [Improvement areas](#improvement-areas)
+  * Take on projects of increased scope and impact.
+  * Be more patient for results.
+  * Be more skeptical of and validate stakeholder assumptions.
+* [Mistakes](#mistakes-made)
+  * ASA campaign structure
+* [Disagree and commit](#disagree-and-commit)
+  * GDPR ETL with Presto
+* [Driving long term roadmaps](#driving-long-term-roadmaps)
+  * Feature backfill framework
+  * Automatic campaign generation tool
 
 # Personal Philosophy
 
@@ -309,7 +336,7 @@
   * Overlapping campaings were needed due to lack of negative geo targeting on the platform.
   * Caused huge spend increase on 50% rollout when the targeting overlap was significant. 
   
-### Disagree & commit examples
+### Disagree and commit
 * Use of Presto for ETL in GDPR project
   * Wasn't ready for prime time, but committed to the deicision.
 

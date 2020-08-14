@@ -308,6 +308,10 @@
   * Took Apple reps word at face value that campaigns wouldn't compete with each other. 
   * Overlapping campaings were needed due to lack of negative geo targeting on the platform.
   * Caused huge spend increase on 50% rollout when the targeting overlap was significant. 
+  
+### Disagree & commit examples
+* Use of Presto for ETL in GDPR project
+  * Wasn't ready for prime time, but committed to the deicision.
 
 
 ### Low points

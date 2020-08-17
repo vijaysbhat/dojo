@@ -11,11 +11,19 @@
   * How many requests per second do we expect?
   * What is the required latency?
   * What is the expected read to write ratio?
-* **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them, highlighting options and tradeoffs.**
+* Abstract Architecture
+  * Sketch box diagram of important components and connections, **don't go over in detail yet.**
+    * Application layer
+    * Platform layer services required
+    * Data storage layer
+    * Caching
+* **Cover these [topics](#areas-of-concern) after laying out abstract architecture.**
+  * Ask which areas to focus on.
+  * Pace your discussion of them, highlighting options and tradeoffs.
 * **Back of the envelope sizing** - number of machines, RAM, cost, SLA (estimate failure rate, detection and response time) 
 
 ## Areas Of Concern
-* **Supporting Backend Services**
+* **Backend Services**
   * Where does the service being designed fit in?
   * Highlight **separation of concerns.**
   * Service discovery - Zookeeper, consul
@@ -752,6 +760,8 @@ Power           Exact Value         Approx Value        Bytes
 
 * https://github.com/donnemartin/system-design-primer
 * https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview/
+* https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26
+* https://gist.github.com/vasanthk/485d1c25737e8e72759f
 * https://landing.google.com/sre/sre-book/toc/
 * [Jeff Dean's Stanford talk](https://static.googleusercontent.com/media/research.google.com/en//people/jeff/stanford-295-talk.pdf) - **SOLID content**
 * https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/

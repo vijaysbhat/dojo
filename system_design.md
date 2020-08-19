@@ -2,13 +2,10 @@
 
 ## Approach
 * **Ask clarifying questions**
-  * Who is going to use it?
-  * How are they going to use it?
+  * Who is going to use it and how?
   * How many users are there?
-  * What does the system do?
-  * What are the inputs and outputs of the system?
   * How much data do we expect to handle?
-  * How many requests per second do we expect?
+  * How many requests per second do we expect? What's the geographic and time of day / week / season distribution?
   * What is the required latency?
   * What is the expected read to write ratio?
 * Abstract Architecture

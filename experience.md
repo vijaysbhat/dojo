@@ -10,6 +10,7 @@
   * [GDPR export](#gdpr-backend)
   * C1 recommendation system
   * AG energy data platform
+  * Data mileage project
 * [Strengths](#strengths)
   * End to end delivery of projects starting from ambiguous business requirements, evaluating technical solutions and enabling team execution.
   * Data skills to communicate and influence decision making.
@@ -28,6 +29,7 @@
   * Rider incentives data model and Superset dashboard.
     * Too granular data model was blowing up browser memory.
     * Preprocess cube / rollup to allow different cuts while keeping data / memory needs low.
+    * Migration to Superset unlocks Druid usage for interactive analysis.
   * Automatic campaign generation tool for rapid experimentation.
 
 # Personal Philosophy

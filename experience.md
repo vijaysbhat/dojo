@@ -24,8 +24,11 @@
 * [Disagree and commit](#disagree-and-commit)
   * GDPR ETL with Presto
 * [Driving long term roadmaps](#driving-long-term-roadmaps)
-  * Feature backfill framework
-  * Automatic campaign generation tool
+  * Feature backfill framework.
+  * Rider incentives data model and Superset dashboard.
+    * Too granular data model was blowing up browser memory.
+    * Preprocess cube / rollup to allow different cuts while keeping data / memory needs low.
+  * Automatic campaign generation tool for rapid experimentation.
 
 # Personal Philosophy
 

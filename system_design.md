@@ -23,9 +23,10 @@
 * **Backend Services**
   * Where does the service being designed fit in?
   * Highlight **separation of concerns.**
-  * Service discovery - Zookeeper, consul
+  * Service discovery - Zookeeper, Consul, envoy
   * Communication
     * Synchronous - RPC, REST
+      * Use envoy service mesh
     * Async - [message queues](#message-queues-and-async-processing) like [Kafka](#kafka-internals), RabbitMQ
 * **Entities / Data Model**
 * **Data Storage**

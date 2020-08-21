@@ -10,7 +10,7 @@
   * [GDPR export](#gdpr-backend)
   * C1 recommendation system
   * AG energy data platform
-  * Data mileage project
+  * Driver mileage and earnings project
 * [Strengths](#strengths)
   * End to end delivery of projects starting from ambiguous business requirements, evaluating technical solutions and enabling team execution.
   * Data skills to communicate and influence decision making.
@@ -24,12 +24,11 @@
   * ASA campaign structure
 * [Disagree and commit](#disagree-and-commit)
   * GDPR ETL with Presto
-* [Driving long term roadmaps](#driving-long-term-roadmaps)
-  * Feature backfill framework.
+* [Driving product and long term roadmaps](#driving-long-term-roadmaps)
+  * GDPR export scoping based on tradeoffs between online and offline data store export.
   * Rider incentives data model and Superset dashboard.
-    * Too granular data model was blowing up browser memory.
-    * Preprocess cube / rollup to allow different cuts while keeping data / memory needs low.
-    * Migration to Superset unlocks Druid usage for interactive analysis.
+  * Feature backfill framework.
+  * Drove driver mileage and earnings project requirements with Chief Economist team.
   * Automatic campaign generation tool for rapid experimentation.
 
 # Personal Philosophy
@@ -102,7 +101,11 @@
 * Influence project prioritization through guidance on impact and tradeoffs (e.g.feature work vs SLA improvements)
 * Examples
   * Feature backfill functionality by extending online / offline ML feature service backend.
+  * GDPR export scoping based on tradeoffs between online and offline data store export.
   * Migrating dashboards to superset.
+    * Too granular data model was blowing up browser memory.
+    * Preprocess cube / rollup to allow different cuts while keeping data / memory needs low.
+    * Migration to Superset unlocks Druid usage for interactive analysis.
   * Build automated tool to generate and configure campaigns across ad platforms.
 
 ### Mentoring
@@ -185,61 +188,7 @@
 * Broad industry background.
 * Owning gaps in my knowledge and knowing when to seek help.
 
-## Improvement Areas
 
-### Address blind spots
-* Meta improvement area - blind spots are insidious because one can't see them or know they exist. It takes consistent feedback from trusted mentors and an open mind to identify and improve.
-* I used to think that as an engineer, all my impact was through the technical strength of my solutions. I was not even aware of other more important aspects of impact.
-* Most of the improvement areas below were blind spots of mine that I am grateful to have been made aware of.
-
-### Impatience to see progress / giving up [too early](https://www.samuelthomasdavies.com/book-summaries/business/the-dip/)
-> It’s human nature to quit when it hurts. But it’s that reflex that creates scarcity. The Dip creates scarcity; scarcity creates value. - Seth Godin
-
-  * Most consistent feedback I'd been receiving in the past which I've addressed with maturity in recent years.
-  * I was getting stuck in a cycle of a) being all in on a shiny new path b) getting turned off by lack of progress or setbacks c) questioning whether I had made the right choice. e.g
-    * Transitioning from SWE to data science (due to perceived increase in prestige) to data engineering and back to SWE.
-    * Getting turned off at not being chosen for desirable projects when I thought I was best suited for them. e.g. AG
-    * Feeling like I deserved to be doing "*intellectual*" work and being resentful when given grunt work and assuming that was a reflection of how my abilities were perceived. e.g. Facebook
-  * I finally broke the cycle at Lyft after considerable self reflection and talking to mentors when I noticed the same loop repeating itself.
-  * **Learnings**
-    * No one knows or cares if I am awesome - they have plenty of their own shit to worry about. I need to establish that trust anew in every new environment.
-    * Doing (impactful) grunt work nobody is willing to do is actually an amazing way to quickly build trust. Even better if I can automate it.
-    * Once I build trust and reputation, folks open up about their deeper challenges and are eager to build a true partnership.
-    * Awareness of surface level / tablestakes problems that are often common knowledge (i.e can be found in a Google search) is not valuable - what's valuable are the hidden challenges that arise after solving tablestakes. To earn access to those, I need to stick with a path through tough times and periods of doubt. This is when deep insights present themselves that I didn't even know existed or were important. e.g.
-      * Directing and up-leveling team output provides much more leverage than me optimizing my individual technical contributions by chasing more *prestigious* work. Much better to help the team deliver and I can fill in the skill gaps needed to make that happen.
-      * Importance of driving the roadmap process and [pre-empting stakeholder needs](#influence-long-term-stakeholder-roadmaps).
-      * Technical example - data pipeline lineage visibility and quickly assessing downstream impact of failures is a hidden challenge that emerges after a tool like Airflow gains adoption.
-
-### Influence long term stakeholder roadmaps
-* What does this involve?
-  * Ideation and alignment on charter.
-  * Anticipate and guide stakeholder needs.
-  * Collaborative prioritization.
-  * Highlight and explain tradeoffs.
-* I used to think that my role as an engineer was in solution design and delivery, *after* the business problem had been identified by stakeholders.
-* This self limiting mindset was a major blind spot, given all the industry experience I had. It came to my attention during one of my checkins.
-* I showed intentional improvement in the [DSP forecasting project](#dsp-forecasting-system).
-  * Socialized the importance of SLA, observability and monitoring, data quality and circuit breakers.
-  * Got buy-in for these areas of focus in the project while deprioritizing the distractions (distributed training, real time sources)
-* **Learnings**
-  * I need to lean in on my industry experience and technical expertise to anticipate and communicate stakeholder needs ahead of them even being aware of them, and lay out a recommended roadmap. This builds trust, reduces the cognitive burden for stakeholders, and helps everyone succeed.
-  * Demonstrates ownership of the business outcome.
-
-### Vet stakeholder assumptions
-* Be proactive and assertive in questioning stakeholder assumptions in a collaborative way. What if the stakeholders have blind spots that could benefit from additional perspective? e.g.
-  * [Hive migration timing](#driver-engagement-team)
-  * [GDPR data quality](#gdpr-backend)
-* Showed intentional improvement with this insight in the [DSP forecasting project](#dsp-forecasting-system).
-  * Do we truly need distributed training? No, small dataset.
-  * Do we truly need real time sources? No, forecasts used to inform manual decisions taken once a day.
-
-### Drive adoption of solutions
-* Socialize and drive adoption of solutions I've built, even if they are not in my core area.
-  * e.g. [Hive resource usage dashboard](#hive-resource-usage-dashboard) - others picked it up and took credit for it.
-
-### Others
-* Be confident about ownership and recommendations made.
-* Actively mentor junior team members.
 
 ## Stories
 
@@ -345,6 +294,61 @@
 * Use of Presto for ETL in GDPR project
   * Wasn't ready for prime time, but committed to the deicision.
 
+## Improvement Areas
+
+### Address blind spots
+* Meta improvement area - blind spots are insidious because one can't see them or know they exist. It takes consistent feedback from trusted mentors and an open mind to identify and improve.
+* I used to think that as an engineer, all my impact was through the technical strength of my solutions. I was not even aware of other more important aspects of impact.
+* Most of the improvement areas below were blind spots of mine that I am grateful to have been made aware of.
+
+### Impatience to see progress / giving up [too early](https://www.samuelthomasdavies.com/book-summaries/business/the-dip/)
+> It’s human nature to quit when it hurts. But it’s that reflex that creates scarcity. The Dip creates scarcity; scarcity creates value. - Seth Godin
+
+  * Most consistent feedback I'd been receiving in the past which I've addressed with maturity in recent years.
+  * I was getting stuck in a cycle of a) being all in on a shiny new path b) getting turned off by lack of progress or setbacks c) questioning whether I had made the right choice. e.g
+    * Transitioning from SWE to data science (due to perceived increase in prestige) to data engineering and back to SWE.
+    * Getting turned off at not being chosen for desirable projects when I thought I was best suited for them. e.g. AG
+    * Feeling like I deserved to be doing "*intellectual*" work and being resentful when given grunt work and assuming that was a reflection of how my abilities were perceived. e.g. Facebook
+  * I finally broke the cycle at Lyft after considerable self reflection and talking to mentors when I noticed the same loop repeating itself.
+  * **Learnings**
+    * No one knows or cares if I am awesome - they have plenty of their own shit to worry about. I need to establish that trust anew in every new environment.
+    * Doing (impactful) grunt work nobody is willing to do is actually an amazing way to quickly build trust. Even better if I can automate it.
+    * Once I build trust and reputation, folks open up about their deeper challenges and are eager to build a true partnership.
+    * Awareness of surface level / tablestakes problems that are often common knowledge (i.e can be found in a Google search) is not valuable - what's valuable are the hidden challenges that arise after solving tablestakes. To earn access to those, I need to stick with a path through tough times and periods of doubt. This is when deep insights present themselves that I didn't even know existed or were important. e.g.
+      * Directing and up-leveling team output provides much more leverage than me optimizing my individual technical contributions by chasing more *prestigious* work. Much better to help the team deliver and I can fill in the skill gaps needed to make that happen.
+      * Importance of driving the roadmap process and [pre-empting stakeholder needs](#influence-long-term-stakeholder-roadmaps).
+      * Technical example - data pipeline lineage visibility and quickly assessing downstream impact of failures is a hidden challenge that emerges after a tool like Airflow gains adoption.
+
+### Influence long term stakeholder roadmaps
+* What does this involve?
+  * Ideation and alignment on charter.
+  * Anticipate and guide stakeholder needs.
+  * Collaborative prioritization.
+  * Highlight and explain tradeoffs.
+* I used to think that my role as an engineer was in solution design and delivery, *after* the business problem had been identified by stakeholders.
+* This self limiting mindset was a major blind spot, given all the industry experience I had. It came to my attention during one of my checkins.
+* I showed intentional improvement in the [DSP forecasting project](#dsp-forecasting-system).
+  * Socialized the importance of SLA, observability and monitoring, data quality and circuit breakers.
+  * Got buy-in for these areas of focus in the project while deprioritizing the distractions (distributed training, real time sources)
+* **Learnings**
+  * I need to lean in on my industry experience and technical expertise to anticipate and communicate stakeholder needs ahead of them even being aware of them, and lay out a recommended roadmap. This builds trust, reduces the cognitive burden for stakeholders, and helps everyone succeed.
+  * Demonstrates ownership of the business outcome.
+
+### Vet stakeholder assumptions
+* Be proactive and assertive in questioning stakeholder assumptions in a collaborative way. What if the stakeholders have blind spots that could benefit from additional perspective? e.g.
+  * [Hive migration timing](#driver-engagement-team)
+  * [GDPR data quality](#gdpr-backend)
+* Showed intentional improvement with this insight in the [DSP forecasting project](#dsp-forecasting-system).
+  * Do we truly need distributed training? No, small dataset.
+  * Do we truly need real time sources? No, forecasts used to inform manual decisions taken once a day.
+
+### Drive adoption of solutions
+* Socialize and drive adoption of solutions I've built, even if they are not in my core area.
+  * e.g. [Hive resource usage dashboard](#hive-resource-usage-dashboard) - others picked it up and took credit for it.
+
+### Others
+* Be confident about ownership and recommendations made.
+* Actively mentor junior team members.
 
 ### Low points
 * Early into Lyft

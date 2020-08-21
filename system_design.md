@@ -473,7 +473,7 @@ Power           Exact Value         Approx Value        Bytes
 ### Data Storage Formats
 
 #### [Parquet](https://databricks.com/session_eu19/the-parquet-format-and-performance-optimization-opportunities)
-* Data orginization - hybrid of row and columnar formats
+* Data organization - hybrid of row and columnar formats
   * Row groups (128 MB)
   * Column chunks
     * Pages (1 MB)
@@ -500,7 +500,7 @@ Power           Exact Value         Approx Value        Bytes
 * Queueing - single consumer receives any given message
 * PubSub - many consumers can subscribe to a queue / topic
 * Backpressure
-  * Send HTTP 503 / failure codes when queue fills up and let client do exponential backoff.
+  * Send HTTP 429 / failure codes when queue fills up and let client do exponential backoff.
 
 ### Kafka Internals
  * Order guaranteed at a partition level.
@@ -759,6 +759,7 @@ Power           Exact Value         Approx Value        Bytes
 * https://github.com/donnemartin/system-design-primer
 * https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview/
 * https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26
+* http://www.practicecodinginterview.com/blog/2018/8/18/the-system-design-interview
 * https://gist.github.com/vasanthk/485d1c25737e8e72759f
 * https://landing.google.com/sre/sre-book/toc/
 * [Jeff Dean's Stanford talk](https://static.googleusercontent.com/media/research.google.com/en//people/jeff/stanford-295-talk.pdf) - **SOLID content**

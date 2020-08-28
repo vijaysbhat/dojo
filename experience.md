@@ -22,6 +22,7 @@
   * Be more skeptical of and validate stakeholder assumptions.
 * [Mistakes](#mistakes-made)
   * ASA campaign structure
+  * Almost brought down Mongo cluster
 * [Disagree and commit](#disagree-and-commit)
   * GDPR ETL with Presto
 * [Driving product and long term roadmaps](#driving-long-term-roadmaps)

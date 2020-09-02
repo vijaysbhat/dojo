@@ -392,7 +392,8 @@ Power           Exact Value         Approx Value        Bytes
   * reduces read / write traffic and replication.
   * increased application complexity.
   * uneven shard key can cause unbalanced load on shards.
-  * use consistent hashing to reduce resharding data movement.  
+  * use consistent hashing to reduce resharding data movement.
+  * live production scaling - [Pinterest](https://medium.com/pinterest-engineering/sharding-pinterest-how-we-scaled-our-mysql-fleet-3f341e96ca6f) and [AWS](https://aws.amazon.com/blogs/database/sharding-with-amazon-relational-database-service/)
 * **denormalization**
   * pre-join tables
   * can improve read performance

@@ -713,7 +713,9 @@ Power           Exact Value         Approx Value        Bytes
     * Admin operations on tables
   * Zookeeper
     * Coordinate and share state between master and region server
-* Use [Bloom Filter](/notes.md#bloom-filter) to avoid disk lookups for testing if column exists for a row
+* Use [Bloom Filter](/notes.md#bloom-filter) to avoid disk lookups for testing if column exists for a row.
+* Use [BlockCache](https://blog.cloudera.com/hbase-blockcache-101/) for read performance.
+* [Optimal cell size](https://docs.cloudera.com/documentation/enterprise/5-6-x/topics/admin_hbase_mob.html) 100KB or less but can support binary data upto 10MB.
 * Read path
   * Get region server for .META table from Zookeeper - cache for future use and refresh if there is a miss
   * Get region server for the table and row key

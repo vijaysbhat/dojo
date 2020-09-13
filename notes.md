@@ -180,6 +180,8 @@
   * No improvement for CPU heavy tasks
   * Use ThreadPoolExecutor from concurrent.futures
   * Use threading.Lock to synchronize control
+* [Semaphores](https://javadoc.scijava.org/Java7/java/util/concurrent/Semaphore.html)
+* [Monitors](http://web.mit.edu/javadev/doc/tutorial/java/threads/monitors.html)
 
 
 ### Object Oriented Design

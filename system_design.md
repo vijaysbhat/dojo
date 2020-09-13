@@ -2,25 +2,31 @@
 
 ## Approach
 * **Ask clarifying questions**
-  * Who is going to use it?
-  * How are they going to use it?
+  * Who is going to use it and how?
   * How many users are there?
-  * What does the system do?
-  * What are the inputs and outputs of the system?
   * How much data do we expect to handle?
-  * How many requests per second do we expect?
+  * How many requests per second do we expect? What's the geographic and time of day / week / season distribution?
   * What is the required latency?
   * What is the expected read to write ratio?
-* **Cover these [topics](#areas-of-concern) - list them out at the beginning and pace your discussion of them, highlighting options and tradeoffs.**
+* Abstract Architecture
+  * Sketch box diagram of important components and connections, **don't go over in detail yet.**
+    * Application layer
+    * Platform layer services required
+    * Data storage layer
+    * Caching
+* **Cover these [topics](#areas-of-concern) after laying out abstract architecture.**
+  * Ask which areas to focus on.
+  * Pace your discussion of them, highlighting options and tradeoffs.
 * **Back of the envelope sizing** - number of machines, RAM, cost, SLA (estimate failure rate, detection and response time) 
 
 ## Areas Of Concern
-* **Supporting Backend Services**
+* **Backend Services**
   * Where does the service being designed fit in?
   * Highlight **separation of concerns.**
-  * Service discovery - Zookeeper, consul
+  * Service discovery - Zookeeper, Consul, envoy
   * Communication
     * Synchronous - RPC, REST
+      * Use envoy service mesh
     * Async - [message queues](#message-queues-and-async-processing) like [Kafka](#kafka-internals), RabbitMQ
 * **Entities / Data Model**
 * **Data Storage**
@@ -386,7 +392,8 @@ Power           Exact Value         Approx Value        Bytes
   * reduces read / write traffic and replication.
   * increased application complexity.
   * uneven shard key can cause unbalanced load on shards.
-  * use consistent hashing to reduce resharding data movement.  
+  * use consistent hashing to reduce resharding data movement.
+  * live production scaling - [Pinterest](https://medium.com/pinterest-engineering/sharding-pinterest-how-we-scaled-our-mysql-fleet-3f341e96ca6f) and [AWS](https://aws.amazon.com/blogs/database/sharding-with-amazon-relational-database-service/)
 * **denormalization**
   * pre-join tables
   * can improve read performance
@@ -467,7 +474,7 @@ Power           Exact Value         Approx Value        Bytes
 ### Data Storage Formats
 
 #### [Parquet](https://databricks.com/session_eu19/the-parquet-format-and-performance-optimization-opportunities)
-* Data orginization - hybrid of row and columnar formats
+* Data organization - hybrid of row and columnar formats
   * Row groups (128 MB)
   * Column chunks
     * Pages (1 MB)
@@ -494,7 +501,7 @@ Power           Exact Value         Approx Value        Bytes
 * Queueing - single consumer receives any given message
 * PubSub - many consumers can subscribe to a queue / topic
 * Backpressure
-  * Send HTTP 503 / failure codes when queue fills up and let client do exponential backoff.
+  * Send HTTP 429 / failure codes when queue fills up and let client do exponential backoff.
 
 ### Kafka Internals
  * Order guaranteed at a partition level.
@@ -706,7 +713,9 @@ Power           Exact Value         Approx Value        Bytes
     * Admin operations on tables
   * Zookeeper
     * Coordinate and share state between master and region server
-* Use [Bloom Filter](/notes.md#bloom-filter) to avoid disk lookups for testing if column exists for a row
+* Use [Bloom Filter](/notes.md#bloom-filter) to avoid disk lookups for testing if column exists for a row.
+* Use [BlockCache](https://blog.cloudera.com/hbase-blockcache-101/) for read performance.
+* [Optimal cell size](https://docs.cloudera.com/documentation/enterprise/5-6-x/topics/admin_hbase_mob.html) 100KB or less but can support binary data upto 10MB.
 * Read path
   * Get region server for .META table from Zookeeper - cache for future use and refresh if there is a miss
   * Get region server for the table and row key
@@ -752,6 +761,9 @@ Power           Exact Value         Approx Value        Bytes
 
 * https://github.com/donnemartin/system-design-primer
 * https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview/
+* https://blog.pramp.com/how-to-succeed-in-a-system-design-interview-27b35de0df26
+* http://www.practicecodinginterview.com/blog/2018/8/18/the-system-design-interview
+* https://gist.github.com/vasanthk/485d1c25737e8e72759f
 * https://landing.google.com/sre/sre-book/toc/
 * [Jeff Dean's Stanford talk](https://static.googleusercontent.com/media/research.google.com/en//people/jeff/stanford-295-talk.pdf) - **SOLID content**
 * https://www.the-paper-trail.org/post/2008-11-27-consensus-protocols-two-phase-commit/

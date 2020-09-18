@@ -102,6 +102,8 @@
 * A* algorithm - directed shortest path
   * Improves upon Dijkstra by using the currently known *true* distance to the source plus a heuristic distance (known ahead of time, e.g. Euclidian distance) so more promising paths are explored first.
   * Correctness - if the heuristic distance is guaranteed to be less than or equal to the true distance, we can trivially see that it will give us the correct result.
+* DAG cycle detection - subtly different from cycle detection in undirected graph
+* Topological sorting
 
 ### Streaming Algorithms
   * [Reservoir sampling](https://en.wikipedia.org/wiki/Reservoir_sampling)
